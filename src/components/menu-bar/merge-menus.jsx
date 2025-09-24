@@ -32,7 +32,7 @@ export function mergeMenus(editor, meta, onOpen) {
       ),
       Menu: () => (
         <FileMenu
-          ExtendedMenu={editor.menuItems?.find?.((item) => item.id === 'file')?.Menu}
+          ExtendedMenu={editor.menuItems?.find((item) => item.id === 'file')?.Menu}
           onNew={handelNew}
           onOpen={handleOpen}
           onSave={editor.onSave}
@@ -50,7 +50,7 @@ export function mergeMenus(editor, meta, onOpen) {
       ),
       Menu: () => (
         <EditMenu
-          ExtendedMenu={editor.menuItems?.find?.((item) => item.id === 'edit')?.Menu}
+          ExtendedMenu={editor.menuItems?.find((item) => item.id === 'edit')?.Menu}
           onUndo={editor.onUndo}
           onRedo={editor.onRedo}
           onEnableUndo={editor.onEnableUndo}
@@ -58,5 +58,5 @@ export function mergeMenus(editor, meta, onOpen) {
         />
       ),
     },
-  ].concat(editor.menuItems?.filter?.((item) => item.id !== 'file' && item.id !== 'edit') ?? []);
+  ].concat(editor.menuItems?.filter((item) => item.id !== 'file' && item.id !== 'edit') ?? []);
 }

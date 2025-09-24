@@ -133,7 +133,7 @@ export function Home({ onOpenEditor, onOpenProject }) {
   );
 
   const UserProjects = () => {
-    return userProjects.value?.map?.((item) => (
+    return userProjects.value?.map((item) => (
       <ContextMenu
         key={item.key}
         menuItems={[
@@ -293,18 +293,18 @@ export function Home({ onOpenEditor, onOpenProject }) {
                     label={maybeTranslate(hub.name)}
                   />
                 </span>
+                {hub.examples.length > DISPLAY_EXAMPLES_COUNTS && (
+                  <span
+                    className={classNames(styles.viewAll, styles.link)}
+                    // onClick={openExamplesLibrary}
+                  >
+                    <Text
+                      id="gui.home.all"
+                      defaultMessage="View all"
+                    />
+                  </span>
+                )}
               </div>
-              {hub.examples.length > DISPLAY_EXAMPLES_COUNTS && (
-                <span
-                  className={classNames(styles.viewAll, styles.link)}
-                  // onClick={openExamplesLibrary}
-                >
-                  <Text
-                    id="gui.home.all"
-                    defaultMessage="View all"
-                  />
-                </span>
-              )}
               <div className={styles.libraryGrid}>
                 {hub.examples.map((item, index) => (
                   <LibraryItem
@@ -318,7 +318,6 @@ export function Home({ onOpenEditor, onOpenProject }) {
                       setAlert('importing', { id: item.name });
                       const example = await openProjectFromURL(item.file);
                       delAlert(item.name);
-
                       onOpenProject(example);
                     }}
                   />
@@ -329,13 +328,13 @@ export function Home({ onOpenEditor, onOpenProject }) {
       )}
 
       <div className={styles.footer}>
-        {/* <span
+        <span
           className={classNames(styles.footerItem, styles.link)}
           onClick={() => window.open('https://lab.blockcode.fun/', '_blank')}
         >
           BlockCode Lab
-        </span> */}
-        <span
+        </span>
+        {/* <span
           className={classNames(styles.footerItem, styles.link)}
           onClick={() => {
             openPromptModal({
@@ -382,7 +381,7 @@ export function Home({ onOpenEditor, onOpenProject }) {
             id="gui.privacy.title"
             defaultMessage="Privacy"
           />
-        </span>
+        </span>*/}
         <span
           className={classNames(styles.footerItem, styles.link)}
           onClick={() => window.open('https://github.com/BlockCodeLab/playgrounds-app', '_blank')}
