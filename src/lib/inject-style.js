@@ -1,4 +1,4 @@
-const globalCssObject = {};
+const globalCssObject = Object.create(null);
 
 const styleElement = document.createElement('div');
 const globalStyleSheet = document.createElement('style');
