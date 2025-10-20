@@ -176,7 +176,3 @@ dist
 
 # bun
 bun.lock*
-
-#zed
-.zed/
-arduino_cli/
