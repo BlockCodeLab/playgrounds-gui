@@ -262,9 +262,15 @@ export function Layout() {
       showSplash();
     });
 
+    // 载入本地编辑器
+    let moduleName = editorId;
+    if (window.electron?.localEditors[editorId]) {
+      moduleName = window.electron.localEditors[editorId].main;
+    }
+
     let editor;
     try {
-      editor = (await import(editorId)).default;
+      editor = (await import(moduleName)).default;
     } catch (err) {
       if (DEBUG) {
         console.error(err);
