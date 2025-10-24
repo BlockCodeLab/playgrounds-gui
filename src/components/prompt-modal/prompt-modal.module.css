@@ -30,8 +30,7 @@
   font-size: var(--standard-font-size);
   color: var(--text-primary);
   max-height: 400px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: auto;
 }
 
 .content a {
