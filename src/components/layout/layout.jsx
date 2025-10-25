@@ -264,8 +264,9 @@ export function Layout() {
 
     // 载入本地编辑器
     let moduleName = editorId;
-    if (window.electron?.localEditors[editorId]) {
-      moduleName = window.electron.localEditors[editorId].main;
+    const localEditors = window.electron?.getLocalEditors();
+    if (localEditors?.[editorId]?.main) {
+      moduleName = localEditors[editorId].main;
     }
 
     let editor;

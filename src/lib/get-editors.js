@@ -5,13 +5,10 @@ const editors = readEditors();
 
 export default function () {
   // 读取本地编辑器信息
-  let locals = [];
-  if (window.electron?.localEditors) {
-    locals = Object.values(window.electron.localEditors);
-  }
+  const locals = window.electron?.getLocalEditors() ?? [];
   return Promise.all(
     [].concat(
-      locals.map(async (editor) => {
+      Object.values(locals).map(async (editor) => {
         const { default: info } = await import(editor.info);
         info.id = editor.id;
         info.image = resolve(dirname(editor.info), info.image);
