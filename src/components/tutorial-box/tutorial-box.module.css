@@ -3,9 +3,9 @@
   pointer-events: auto;
   z-index: var(--z-index-card);
   min-width: 468px;
-  top: 60%;
+  top: 55%;
   left: 50%;
-  transform: translate(-50%, 0%);
+  transform: translateX(-50%);
 }
 
 .tutorial-card {
@@ -26,8 +26,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background: var(--extensions-primary);
-  border-bottom: 1px solid var(--extensions-tertiary);
+  background: var(--blocks-primary);
   font-size: var(--small-font-size);
   font-weight: bold;
 }
@@ -81,6 +80,7 @@
 .card-body {
   width: 100%;
   background: var(--ui-white);
+  border-top: 1px solid var(--blocks-tertiary);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -103,7 +103,7 @@
   max-height: 200px;
   object-fit: contain;
   background: var(--ui-secondary);
-  border: 1px solid var(--ui-black-transparent);
+  /*border: 1px solid var(--ui-black-transparent);*/
   border-radius: var(--space);
   overflow: hidden;
   margin: 0 var(--space) var(--space);
@@ -116,8 +116,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-bottom: 2.7rem;
-  margin: 0 var(--space) var(--space);
+  margin: 0 var(--space) 2.7rem var(--space);
+}
+
+.image + .text {
+  height: auto;
 }
 
 .more {
@@ -157,6 +160,7 @@
   border: 0;
   background: var(--theme-primary);
   color: var(--ui-white);
+  margin-bottom: 2.7rem;
 }
 
 .left-page,
@@ -180,7 +184,7 @@
   left: 0;
   height: 2.5rem;
   width: 100%;
-  background: var(--extensions-primary);
+  background: var(--blocks-primary);
 }
 
 .left-button,
@@ -190,8 +194,8 @@
   margin-top: -15px;
   user-select: none;
   cursor: pointer;
-  background: var(--extensions-primary);
-  box-shadow: 0 0 0 4px var(--extensions-transparent);
+  background: var(--blocks-primary);
+  box-shadow: 0 0 0 4px var(--blocks-transparent);
   height: 44px;
   width: 44px;
   border-radius: 100%;
@@ -204,7 +208,7 @@
 
 .left-button:hover,
 .right-button:hover {
-  box-shadow: 0 0 0 6px var(--extensions-transparent);
+  box-shadow: 0 0 0 6px var(--blocks-transparent);
   transform: scale(1.125);
 }
 
@@ -214,10 +218,11 @@
 }
 
 .left-page {
-  left: -0.75rem;
+  left: 0;
   border-right: 0;
   border-top-left-radius: calc(var(--space) * 1.8);
   border-bottom-left-radius: calc(var(--space) * 1.8);
+  transform: translateX(-100%);
 }
 
 .left-button {
@@ -225,10 +230,11 @@
 }
 
 .right-page {
-  right: calc(var(--space) * -1.8);
+  right: 0;
   border-left: 0;
   border-top-right-radius: calc(var(--space) * 1.8);
   border-bottom-right-radius: calc(var(--space) * 1.8);
+  transform: translateX(100%);
 }
 
 .right-button {

@@ -5,13 +5,12 @@ import { useAppContext, Text, Button } from '@blockcode/core';
 import styles from './tutorial-box.module.css';
 
 import tutorialsIcon from '../menu-bar/icons/icon-tutorials.svg';
-import coursesIcon from '../menu-bar/icons/icon-courses.svg';
 import shrinkIcon from './icons/icon-shrink.svg';
 import expandIcon from './icons/icon-expand.svg';
 import closeIcon from './icons/icon-close.svg';
 import arrowIcon from './icons/icon-arrow.svg';
 
-export function TutorialBox({ tutorialId, onBack, onClose }) {
+export function TutorialBox({ tutorialId, onOpenTutorial, onBack, onClose }) {
   const ref = useRef();
 
   const { tutorials } = useAppContext();
@@ -20,9 +19,9 @@ export function TutorialBox({ tutorialId, onBack, onClose }) {
 
   const pageIndex = useSignal(-1);
 
-  const expanded = useSignal(ture);
+  const expanded = useSignal(true);
 
-  const data = useComputed(() => pages.value[pageIndex.value]);
+  const data = useComputed(() => pages.value?.[pageIndex.value]);
 
   const handleNextPage = useCallback(() => {
     pageIndex.value = (pageIndex.value + 1) % pages.value.length;
@@ -32,35 +31,30 @@ export function TutorialBox({ tutorialId, onBack, onClose }) {
     pageIndex.value = (pageIndex.value - 1) % pages.value.length;
   }, []);
 
-  const openTutorial = useCallback(
-    (id) => {
-      const lesson = tutorials.value?.lessons?.[id];
-      if (!lesson) {
-        onClose();
-        return;
-      }
-      batch(() => {
-        pages.value = [].concat(
-          lesson.pages,
-          lesson.next
-            ? {
-                next: lesson.next
-                  .filter((id) => tutorials.lessons[id])
-                  .map((id) => ({
-                    id,
-                    title: tutorials.lessons[id].title,
-                    image: tutorials.lessons[id].image,
-                  })),
-              }
-            : [],
-        );
-        pageIndex.value = 0;
-      });
-    },
-    [onClose],
-  );
-
-  useEffect(() => openTutorial(tutorialId), [openTutorial]);
+  useEffect(() => {
+    const lesson = tutorials.value.lessons[tutorialId];
+    if (!lesson) {
+      onClose();
+      return;
+    }
+    batch(() => {
+      pages.value = [].concat(
+        lesson.pages,
+        lesson.next
+          ? {
+              next: lesson.next
+                .filter((id) => tutorials.value.lessons[id])
+                .map((id) => ({
+                  id,
+                  title: tutorials.value.lessons[id].title,
+                  image: tutorials.value.lessons[id].image,
+                })),
+            }
+          : [],
+      );
+      pageIndex.value = 0;
+    });
+  }, [tutorialId]);
 
   useEffect(() => {
     if (ref.current) {
@@ -102,45 +96,30 @@ export function TutorialBox({ tutorialId, onBack, onClose }) {
             className={styles.headerButton}
             onClick={onBack}
           >
-            {tutorials.value.type === 'course' ? (
-              <>
-                <img
-                  className={styles.buttonIcon}
-                  src={coursesIcon}
-                />
-                <Text
-                  id="gui.menubar.courses"
-                  defaultMessage="Couress"
-                />
-              </>
-            ) : (
-              <>
-                <img
-                  className={styles.buttonIcon}
-                  src={tutorialsIcon}
-                />
-                <Text
-                  id="gui.menubar.tutorials"
-                  defaultMessage="Tutorials"
-                />
-              </>
-            )}
+            <img
+              className={styles.buttonIcon}
+              src={tutorialsIcon}
+            />
+            <Text
+              id="gui.menubar.tutorials"
+              defaultMessage="Tutorials"
+            />
           </div>
           <div className={styles.stepList}>
-            {pages.value.map((_, i) => (
+            {pages.value?.map((_, i) => (
               <div
                 key={i}
                 className={classNames(styles.stepPip, {
-                  [styles.actived]: i === index,
+                  [styles.actived]: i === pageIndex.value,
                 })}
-                onClick={() => setIndex(i)}
+                onClick={() => (pageIndex.value = i)}
               ></div>
             ))}
           </div>
           <div className={styles.headerButtonGroup}>
             <div
               className={styles.headerButton}
-              onClick={() => (expanded.value = !expanded.value)}
+              onClick={useCallback(() => (expanded.value = !expanded.value), [])}
             >
               {expanded.value ? (
                 <>
@@ -208,7 +187,7 @@ export function TutorialBox({ tutorialId, onBack, onClose }) {
                     <div
                       key={item.id}
                       className={styles.moreItem}
-                      onClick={() => openTutorial(item.id)}
+                      onClick={() => onOpenTutorial(item.id)}
                     >
                       <img
                         className={styles.moreItemImage}
@@ -245,7 +224,7 @@ export function TutorialBox({ tutorialId, onBack, onClose }) {
         </>
       )}
 
-      {expanded.value && pageIndex.value < pages.value.length - 1 && (
+      {expanded.value && pages.value && pageIndex.value < pages.value.length - 1 && (
         <>
           <div className={styles.rightPage}></div>
           <div

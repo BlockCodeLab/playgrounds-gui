@@ -9,14 +9,7 @@ import {
   delProject,
   openProjectFromURL,
 } from '@blockcode/utils';
-import {
-  useLocalesContext,
-  maybeTranslate,
-  setAlert,
-  delAlert,
-  openPromptModal,
-  openUserStorage,
-} from '@blockcode/core';
+import { maybeTranslate, setAlert, delAlert, openPromptModal, openUserStorage } from '@blockcode/core';
 import { version } from '../../../../../package.json';
 
 import { Text, ContextMenu, LibraryItem } from '@blockcode/core';
@@ -31,8 +24,6 @@ export function Home({ onOpenEditor, onOpenProject }) {
   // 项目限制数量限制，依据页面宽度调整
   const DISPLAY_PROJECTS_COUNTS = Math.floor((document.body.clientWidth - 20) / (160 + 16));
   const DISPLAY_EXAMPLES_COUNTS = Math.floor((document.body.clientWidth - 20) / (220 + 16)) * 2;
-
-  const { language } = useLocalesContext();
 
   // 用户保存的项目
   const userProjects = useSignal(null);

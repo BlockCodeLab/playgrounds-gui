@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useErrorBoundary } from 'preact/hooks';
 import { batch, useComputed, useSignal, useSignalEffect } from '@preact/signals';
-import { classNames, keyMirror } from '@blockcode/utils';
+import { classNames, keyMirror, openProjectFromURL } from '@blockcode/utils';
 import {
   useAppContext,
   useLocalesContext,
@@ -16,6 +16,8 @@ import {
   openTab,
   openProject,
   closeProject,
+  setAlert,
+  delAlert,
 } from '@blockcode/core';
 import { mergeMenus } from '../menu-bar/merge-menus';
 
@@ -176,7 +178,14 @@ export function Layout() {
   }, []);
 
   const handleOpenTutorial = useCallback((id) => {
-    batch(() => {
+    const lesson = app.tutorials.value.lessons[id];
+    batch(async () => {
+      if (lesson.project) {
+        setAlert('importing', { id });
+        const example = await openProjectFromURL(lesson.project);
+        delAlert(id);
+        openProjectWithSplash(example);
+      }
       tutorialId.value = id;
       tutorialLibraryVisible.value = false;
     });
@@ -313,7 +322,7 @@ export function Layout() {
       tabs: editor.tabs,
       docks: editor.docks,
       panes: editor.panes,
-      tutorials: editor.tutorials,
+      tutorials: window.electron?.getLocalTutorials(editorId, language.value) ?? editor.tutorials, // 优先本地离线教程
     };
 
     batch(() => {
@@ -415,8 +424,9 @@ export function Layout() {
       {tutorialId.value && (
         <TutorialBox
           tutorialId={tutorialId.value}
+          onOpenTutorial={handleOpenTutorial}
           onBack={handleOpenTutorialLibrary}
-          onClose={useCallback(() => (tutorialId.value = null), [])}
+          onClose={() => (tutorialId.value = null)}
         />
       )}
 
