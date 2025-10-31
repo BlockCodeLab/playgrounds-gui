@@ -13,3 +13,6 @@
 [submodule "editors/matrix"]
 	path = editors/matrix
 	url = https://github.com/BlockCodeLab/gui-matrix.git
+[submodule "editors/writer"]
+	path = editors/writer
+	url = https://github.com/BlockCodeLab/gui-writer.git
