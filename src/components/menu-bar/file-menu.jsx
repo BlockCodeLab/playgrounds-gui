@@ -6,9 +6,20 @@ import { useProjectContext, setAlert, openUserStorage, setFile, setModified, Mod
 import { Text, MenuSection, MenuItem } from '@blockcode/core';
 import styles from './menu-bar.module.css';
 
-const savedAlert = (isComputer = false) => {
+const savingAlert = () =>
+  setAlert({
+    message: (
+      <Text
+        id="gui.menubar.saving"
+        defaultMessage="Saving project..."
+      />
+    ),
+  });
+
+const savedAlert = (id, isComputer = false) => {
   setAlert(
     {
+      id,
       message: isComputer ? (
         <Text
           id="gui.menubar.savedComputer"
@@ -51,6 +62,8 @@ export function FileMenu({ onNew, onOpen, onSave, onThumb, ExtendedMenu }) {
   // 保存到浏览器 IndexedDB
   // [TODO] 保存到服务器，获取 ID
   const handleSave = useCallback(async () => {
+    const id = savingAlert();
+
     const data = await getProjectData();
     data.key = key.value;
     const newKey = await putProject(data, onThumb);
@@ -64,18 +77,20 @@ export function FileMenu({ onNew, onOpen, onSave, onThumb, ExtendedMenu }) {
       setModified(ModifyTypes.Saved);
     });
 
-    savedAlert();
+    savedAlert(id);
   }, [getProjectData]);
 
   // 保存项目到计算机本地文件夹
   const handleSaveToComputer = useCallback(async () => {
+    const id = savingAlert();
+
     const data = await getProjectData();
     await saveProjectToComputer(data);
 
     // Electron 上不需要提示已保存
     if (window.electron) return;
 
-    savedAlert(true);
+    savedAlert(id, true);
   }, [getProjectData]);
 
   // 从计算机打开项目
