@@ -16,3 +16,6 @@
 [submodule "editors/writer"]
 	path = editors/writer
 	url = https://github.com/BlockCodeLab/gui-writer.git
+[submodule "editors/iotbit"]
+	path = editors/iotbit
+	url = https://github.com/BlockCodeLab/gui-iotbit.git
