@@ -54,6 +54,7 @@ export function FileMenu({ onNew, onOpen, onSave, onThumb, ExtendedMenu }) {
       editor: meta.value.editor,
       version: meta.value.version,
       monitors: meta.value.monitors,
+      users: meta.value.users,
     });
     data.name = name.value;
     return data;
