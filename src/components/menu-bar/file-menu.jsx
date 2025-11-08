@@ -1,6 +1,6 @@
 import { useCallback } from 'preact/hooks';
 import { batch } from '@preact/signals';
-import { isMac, putProject, openProjectFromComputer, saveProjectToComputer } from '@blockcode/utils';
+import { isMac, putProject, openProjectFromComputer, saveProjectToComputer, sleepMs } from '@blockcode/utils';
 import { useProjectContext, setAlert, openUserStorage, setFile, setModified, ModifyTypes, Keys } from '@blockcode/core';
 
 import { Text, MenuSection, MenuItem } from '@blockcode/core';
@@ -40,6 +40,8 @@ export function FileMenu({ onNew, onOpen, onSave, onThumb, ExtendedMenu }) {
   const { meta, key, name, files, assets } = useProjectContext();
 
   const getProjectData = useCallback(async () => {
+    await sleepMs(0);
+
     // 过滤删除的监控
     for (let index in meta.value.monitors) {
       const monitor = meta.value.monitors[index];
