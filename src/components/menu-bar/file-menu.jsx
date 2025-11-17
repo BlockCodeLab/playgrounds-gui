@@ -90,10 +90,10 @@ export function FileMenu({ onNew, onOpen, onSave, onThumb, ExtendedMenu }) {
     const data = await getProjectData();
     await saveProjectToComputer(data);
 
+    savedAlert(id, true);
+
     // Electron 上不需要提示已保存
     if (window.electron) return;
-
-    savedAlert(id, true);
   }, [getProjectData]);
 
   // 从计算机打开项目
