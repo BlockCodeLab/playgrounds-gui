@@ -1,9 +1,6 @@
 [submodule "editors/tankwar"]
 	path = editors/tankwar
 	url = https://github.com/kankungyip/playground-tankwar.git
-[submodule "editors/arduino"]
-	path = editors/arduino
-	url = https://github.com/BlockCodeLab/gui-arduino.git
 [submodule "editors/esp32"]
 	path = editors/esp32
 	url = https://github.com/BlockCodeLab/gui-esp32.git
