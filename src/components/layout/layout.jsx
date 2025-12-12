@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useErrorBoundary } from 'preact/hooks';
 import { batch, useComputed, useSignal, useSignalEffect } from '@preact/signals';
-import { classNames, keyMirror, openProjectFromURL } from '@blockcode/utils';
+import { isElectron, classNames, keyMirror, openProjectFromURL } from '@blockcode/utils';
 import {
   useAppContext,
   useLocalesContext,
@@ -109,7 +109,7 @@ export function Layout() {
   //
   const foundDevices = useSignal(null);
   useEffect(() => {
-    if (window.electron) {
+    if (isElectron) {
       window.electron.serial.onScan((devices) => {
         foundDevices.value = devices && {
           devices,
@@ -128,7 +128,7 @@ export function Layout() {
   const handleConnectionSearch = () => {};
 
   const handleConnectionClose = useCallback(() => {
-    if (window.electron) {
+    if (isElectron) {
       if (foundDevices.value.type === DeviceType.SerialPort) {
         window.electron.serial.cancel();
       }
@@ -140,7 +140,7 @@ export function Layout() {
   }, []);
 
   const handleConnectionConnect = useCallback((portId) => {
-    if (window.electron) {
+    if (isElectron) {
       if (foundDevices.value.type === DeviceType.SerialPort) {
         window.electron.serial.connect(portId);
       }

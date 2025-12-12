@@ -1,40 +1,69 @@
 import { useCallback } from 'preact/hooks';
 import { batch } from '@preact/signals';
-import { isMac, putProject, openProjectFromComputer, saveProjectToComputer, sleepMs } from '@blockcode/utils';
+import {
+  isElectron,
+  isMac,
+  putProject,
+  openProjectFromComputer,
+  saveProjectToComputer,
+  sleepMs,
+} from '@blockcode/utils';
 import { useProjectContext, setAlert, openUserStorage, setFile, setModified, ModifyTypes, Keys } from '@blockcode/core';
 
 import { Text, MenuSection, MenuItem } from '@blockcode/core';
 import styles from './menu-bar.module.css';
 
-const savingAlert = () =>
-  setAlert({
-    message: (
-      <Text
-        id="gui.menubar.saving"
-        defaultMessage="Saving project..."
-      />
-    ),
-  });
+const savingAlert = (autoClose = false) =>
+  setAlert(
+    {
+      message: (
+        <Text
+          id="gui.alert.saving"
+          defaultMessage="Saving project..."
+        />
+      ),
+    },
+    autoClose,
+  );
 
-const savedAlert = (id, isComputer = false) => {
+const savedAlert = (id, isComputer = false) =>
   setAlert(
     {
       id,
       message: isComputer ? (
         <Text
-          id="gui.menubar.savedComputer"
+          id="gui.alert.savedComputer"
           defaultMessage="Saved to your computer."
         />
       ) : (
         <Text
-          id="gui.menubar.saved"
+          id="gui.alert.saved"
           defaultMessage="Saved to local storage."
         />
       ),
     },
     2000,
   );
-};
+
+const saveErrorAlert = (id, abort = false) =>
+  setAlert(
+    {
+      id,
+      mode: 'warn',
+      message: abort ? (
+        <Text
+          id="gui.alert.saveAbortError"
+          defaultMessage="Abort saving."
+        />
+      ) : (
+        <Text
+          id="gui.alert.saveError"
+          defaultMessage="Failed save."
+        />
+      ),
+    },
+    abort ? 1000 : 2000,
+  );
 
 export function FileMenu({ onNew, onOpen, onSave, onThumb, ExtendedMenu }) {
   const { meta, key, name, files, assets } = useProjectContext();
@@ -85,15 +114,20 @@ export function FileMenu({ onNew, onOpen, onSave, onThumb, ExtendedMenu }) {
 
   // 保存项目到计算机本地文件夹
   const handleSaveToComputer = useCallback(async () => {
-    const id = savingAlert();
+    const id = savingAlert(isElectron ? 1000 : false);
 
     const data = await getProjectData();
-    await saveProjectToComputer(data);
+    const result = await saveProjectToComputer(data);
 
-    savedAlert(id, true);
+    if (isElectron) return;
 
-    // Electron 上不需要提示已保存
-    if (window.electron) return;
+    if (result.success) {
+      savedAlert(id, true);
+    } else if (result.error === 'AbortError') {
+      saveErrorAlert(id, true);
+    } else {
+      saveErrorAlert(id);
+    }
   }, [getProjectData]);
 
   // 从计算机打开项目

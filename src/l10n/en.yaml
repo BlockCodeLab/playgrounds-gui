@@ -10,6 +10,11 @@ gui.alert.compiling: Compiling...
 gui.alert.compileSuccess: Compilation completed.
 gui.alert.compileError: Compilation failed.
 gui.alert.compileViewError: View Message.
+gui.alert.saving: Saving project...
+gui.alert.saved: Saved.
+gui.alert.savedComputer: Saved to your computer.
+gui.alert.saveAbortError: Abort saving.
+gui.alert.saveError: Failed save.
 
 gui.home.my: My projects
 gui.home.all: View all
@@ -31,26 +36,26 @@ gui.splash.errorLabel: Please refresh the page and reopen it.
 gui.menubar.courses: Courses
 gui.menubar.tutorials: Tutorials
 gui.menubar.titlePlaceholder: Project title here
-gui.menubar.mdified: Save to local storage
-gui.menubar.saving: Saving project...
-gui.menubar.saved: Saved to local storage.
-gui.menubar.savedComputer: Saved to your computer.
 
 gui.menubar.file: File
 gui.menubar.file.newProject: New
-gui.menubar.file.openProject: Open
+gui.menubar.file.openProject: Open...
 gui.menubar.file.saveProject: Save
-gui.menubar.file.uploadProject: Load from your computer
-gui.menubar.file.downloadProject: save to your computer
+gui.menubar.file.uploadProject: Load from your computer...
+gui.menubar.file.downloadProject: save to your computer...
 
 gui.menubar.edit: Edit
 gui.menubar.edit.undo: Undo
 gui.menubar.edit.redo: Redo
 
 gui.menubar.device: Device
-gui.menubar.device.connect: Connect
-gui.menubar.device.disconnect: Disconnect
+gui.menubar.device.sync: Sync program
 gui.menubar.device.download: Download program
+gui.menubar.device.reset: Reset device
+gui.menubar.device.connect: Connect device...
+gui.menubar.device.connectUsb: Connect device with USB...
+gui.menubar.device.connectBle: Connect device with Bluetooth (BLE)...
+gui.menubar.device.disconnect: Disconnect device
 
 gui.project.name: Untitled Project
 gui.project.shortname: Untitled

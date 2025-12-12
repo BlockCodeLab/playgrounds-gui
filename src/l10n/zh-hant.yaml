@@ -10,6 +10,11 @@ gui.alert.compiling: 正在編譯…
 gui.alert.compileSuccess: 編譯完成。
 gui.alert.compileError: 編譯失敗。
 gui.alert.compileViewError: 查看信息
+gui.alert.saving: 正在保存專案…
+gui.alert.saved: 已保存。
+gui.alert.savedComputer: 已保存到電腦。
+gui.alert.saveAbortError: 取消保存。
+gui.alert.saveError: 保存專案失敗。
 
 gui.home.my: 我的專案
 gui.home.all: 查看全部
@@ -31,26 +36,26 @@ gui.splash.errorLabel: 請刷新頁面重新打開。
 gui.menubar.courses: 課程
 gui.menubar.tutorials: 教程
 gui.menubar.titlePlaceholder: 在此填寫專案標題
-gui.menubar.modified: 保存到本地
-gui.menubar.saving: 正在保存專案…
-gui.menubar.saved: 已保存到本地。
-gui.menubar.savedComputer: 已保存到電腦。
 
 gui.menubar.file: 文檔
 gui.menubar.file.newProject: 新專案
-gui.menubar.file.openProject: 打開
+gui.menubar.file.openProject: 打開…
 gui.menubar.file.saveProject: 保存
-gui.menubar.file.uploadProject: 從電腦中打開
-gui.menubar.file.downloadProject: 保存到電腦
+gui.menubar.file.uploadProject: 從電腦中打開…
+gui.menubar.file.downloadProject: 保存到電腦…
 
 gui.menubar.edit: 編輯
 gui.menubar.edit.undo: 撤銷
 gui.menubar.edit.redo: 重做
 
 gui.menubar.device: 設備
-gui.menubar.device.connect: 連接
-gui.menubar.device.disconnect: 斷開連接
+gui.menubar.device.sync: 同步程序
 gui.menubar.device.download: 下載程序
+gui.menubar.device.reset: 重置
+gui.menubar.device.connect: 連接…
+gui.menubar.device.connectUsb: 通過 USB 連接…
+gui.menubar.device.connectBle: 通過藍牙（BLE）連接…
+gui.menubar.device.disconnect: 斷開連接
 
 gui.project.name: 未命名專案
 gui.project.shortname: 未命名
