@@ -20,7 +20,7 @@ addAlertConfig('downloading', {
   message: (
     <Text
       id="gui.alert.downloading"
-      defaultMessage="Downloading..."
+      defaultMessage="Downloading...{progress}%"
     />
   ),
 });
@@ -36,24 +36,92 @@ addAlertConfig('downloadCompleted', {
   ),
 });
 
-// 连接失败
-addAlertConfig('connectionError', {
-  mode: 'warn',
+// 正在连接
+addAlertConfig('connecting', {
+  icon: <Spinner level="success" />,
   message: (
     <Text
-      id="gui.alert.connectionError"
-      defaultMessage="Connection error."
+      id="gui.alert.connecting"
+      defaultMessage="Connecting..."
+    />
+  ),
+});
+
+// 已经连接
+addAlertConfig('connected', {
+  icon: null,
+  message: (
+    <Text
+      id="gui.alert.connected"
+      defaultMessage="Connected."
     />
   ),
 });
 
 // 连接取消
 addAlertConfig('connectionCancel', {
+  icon: null,
   mode: 'warn',
   message: (
     <Text
       id="gui.alert.connectionCancel"
       defaultMessage="Connection cancel."
+    />
+  ),
+});
+
+// 连接失败
+addAlertConfig('connectionError', {
+  icon: null,
+  mode: 'warn',
+  message: (
+    <Text
+      id="gui.alert.connectionError"
+      defaultMessage="Connection error or connection was lost."
+    />
+  ),
+});
+
+// 清除固件
+addAlertConfig('erasing', {
+  icon: <Spinner level="success" />,
+  message: (
+    <Text
+      id="gui.alert.erasing"
+      defaultMessage="Erasing..."
+    />
+  ),
+});
+
+// 还原固件
+addAlertConfig('restoring', {
+  icon: <Spinner level="success" />,
+  message: (
+    <Text
+      id="gui.alert.restoring"
+      defaultMessage="Firmware restoring...{progress}%"
+    />
+  ),
+});
+
+// 恢复固件
+addAlertConfig('recovering', {
+  icon: <Spinner level="success" />,
+  message: (
+    <Text
+      id="gui.alert.recovering"
+      defaultMessage="Recovering..."
+    />
+  ),
+});
+
+// 还原完成
+addAlertConfig('restoreCompleted', {
+  icon: null,
+  message: (
+    <Text
+      id="gui.alert.restoreCompleted"
+      defaultMessage="Firmware resotre completed! Now press RESET key"
     />
   ),
 });
@@ -74,7 +142,7 @@ addAlertConfig('compileCompleted', {
   icon: null,
   message: (
     <Text
-      id="gui.alert.compileSuccess"
+      id="gui.alert.compileCompleted"
       defaultMessage="Compilation completed."
     />
   ),
@@ -82,11 +150,22 @@ addAlertConfig('compileCompleted', {
 
 // 编译失败
 addAlertConfig('compileError', {
+  icon: null,
   mode: 'warn',
   message: (
     <Text
       id="gui.alert.compileError"
       defaultMessage="Compilation error."
+    />
+  ),
+});
+
+addAlertConfig('reseting', {
+  icon: null,
+  message: (
+    <Text
+      id="gui.alert.reseting"
+      defaultMessage="Reseting..."
     />
   ),
 });

@@ -1,10 +1,10 @@
 import { classNames } from '@blockcode/utils';
-import { Button } from '@blockcode/core';
+import { maybeTranslate, Button } from '@blockcode/core';
 import styles from './alerts.module.css';
 
 import closeIcon from './icon-close.svg';
 
-export function Alert({ mode, icon, message, button, onClose }) {
+export function Alert({ mode, icon, message, options, button, onClose }) {
   return (
     <div
       className={classNames(styles.alertWrapper, {
@@ -13,7 +13,7 @@ export function Alert({ mode, icon, message, button, onClose }) {
       })}
     >
       <div className={styles.icon}>{typeof icon === 'string' ? <img src={icon} /> : icon}</div>
-      <div className={styles.message}>{message}</div>
+      <div className={styles.message}>{maybeTranslate(message, options)}</div>
       {button && (
         <Button
           className={styles.button}

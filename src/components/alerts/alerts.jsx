@@ -4,13 +4,15 @@ import styles from './alerts.module.css';
 export function Alerts({ items }) {
   return (
     <div className={styles.alertsWrapper}>
-      {items.map((item) => (
+      {items.map(({ id, mode, icon, message, button, onClose, ...options }) => (
         <Alert
-          mode={item.mode ?? 'success'}
-          icon={item.icon}
-          message={item.message}
-          button={item.button}
-          onClose={item.onClose}
+          key={id}
+          mode={mode ?? 'success'}
+          icon={icon}
+          message={message}
+          options={options}
+          button={button}
+          onClose={onClose}
         />
       ))}
     </div>
