@@ -1,13 +1,13 @@
-import { useEffect } from 'preact/hooks';
+import { useCallback, useEffect } from 'preact/hooks';
 import { batch, useSignal } from '@preact/signals';
 import { isMac } from '@blockcode/utils';
-import { useProjectContext, Keys } from '@blockcode/core';
+import { useProjectContext, Keys, setMeta } from '@blockcode/core';
 
 import { Text, MenuSection, MenuItem } from '@blockcode/core';
 import styles from './menu-bar.module.css';
 
-export function EditMenu({ onUndo, onRedo, onEnableUndo, onEnableRedo, ExtendedMenu }) {
-  const { key, fileId, modified } = useProjectContext();
+export function EditMenu({ enableCoding, onUndo, onRedo, onEnableUndo, onEnableRedo, ExtendedMenu }) {
+  const { meta, key, fileId, modified } = useProjectContext();
 
   const disabledUndo = useSignal(true);
 
@@ -19,6 +19,10 @@ export function EditMenu({ onUndo, onRedo, onEnableUndo, onEnableRedo, ExtendedM
       disabledRedo.value = !onEnableRedo();
     });
   }, [key.value, fileId.value, modified.value]);
+
+  const handleManualCoding = useCallback(() => {
+    setMeta('manualCoding', !meta.value.manualCoding);
+  }, []);
 
   return (
     <>
@@ -49,6 +53,28 @@ export function EditMenu({ onUndo, onRedo, onEnableUndo, onEnableRedo, ExtendedM
           onClick={onRedo}
         />
       </MenuSection>
+
+      {enableCoding && (
+        <MenuSection>
+          <MenuItem
+            className={styles.menuItem}
+            label={
+              meta.value.manualCoding ? (
+                <Text
+                  id="gui.menubar.edit.closeManualCoding"
+                  defaultMessage="Turn off coding mode"
+                />
+              ) : (
+                <Text
+                  id="gui.menubar.edit.openManualCoding"
+                  defaultMessage="Turn on coding mode"
+                />
+              )
+            }
+            onClick={handleManualCoding}
+          />
+        </MenuSection>
+      )}
 
       {ExtendedMenu && <ExtendedMenu itemClassName={styles.menuItem} />}
     </>

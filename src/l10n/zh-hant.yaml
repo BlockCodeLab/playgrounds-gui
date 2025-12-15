@@ -53,6 +53,15 @@ gui.menubar.file.downloadProject: 保存到電腦…
 gui.menubar.edit: 編輯
 gui.menubar.edit.undo: 撤銷
 gui.menubar.edit.redo: 重做
+gui.menubar.edit.openManualCoding: 打開代碼編程
+gui.menubar.edit.closeManualCoding: 關閉代碼編程
+
+gui.menubar.view: 查看
+gui.menubar.view.log: 日誌
+gui.menubar.view.serial: 串口
+gui.menubar.view.files: 文檔管理
+gui.menubar.view.openAutoDisplayPanel: 打開自動顯示
+gui.menubar.view.closeAutoDisplayPanel: 關閉自動顯示
 
 gui.menubar.device: 設備
 gui.menubar.device.sync: 同步程序

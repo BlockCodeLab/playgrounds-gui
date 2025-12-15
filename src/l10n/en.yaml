@@ -53,6 +53,15 @@ gui.menubar.file.downloadProject: save to your computer...
 gui.menubar.edit: Edit
 gui.menubar.edit.undo: Undo
 gui.menubar.edit.redo: Redo
+gui.menubar.edit.openManualCoding: Turn on coding mode
+gui.menubar.edit.closeManualCoding: Turn off coding mode
+
+gui.menubar.view: View
+gui.menubar.view.log: Log panel
+gui.menubar.view.serial: Serial panel
+gui.menubar.view.files: Files panel
+gui.menubar.view.openAutoDisplayPanel: Turn on auto display panel
+gui.menubar.view.closeAutoDisplayPanel: Turn off auto display panel
 
 gui.menubar.device: Device
 gui.menubar.device.sync: Sync program

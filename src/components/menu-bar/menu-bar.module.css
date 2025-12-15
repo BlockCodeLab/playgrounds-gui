@@ -190,3 +190,7 @@ input.menu-label:checked+.menu-bar-item {
 .closeIcon {
   padding: 0 0.35rem;
 }
+
+.blank-check-item>div {
+  padding-left: calc(14px + var(--space) / 2);
+}

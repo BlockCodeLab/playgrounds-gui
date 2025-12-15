@@ -18,6 +18,7 @@ import {
   closeProject,
   setAlert,
   delAlert,
+  setAppState,
 } from '@blockcode/core';
 import { mergeMenus } from '../menu-bar/merge-menus';
 
@@ -42,26 +43,6 @@ const DeviceType = keyMirror({
   Bluetooth: null,
   SerialPort: null,
 });
-
-// 关闭项目和布局
-const closeProjectAndLayout = () =>
-  batch(() => {
-    closeProject();
-    closeLayout();
-  });
-
-// 打开项目
-const openProjectWithSplash = (data) => {
-  batch(() => {
-    showSplash();
-    openProject(
-      Object.assign(JSON.parse(JSON.stringify(data)), {
-        fileId: data.fileId ?? data.files?.[0]?.id,
-      }),
-    );
-    openTab(0);
-  });
-};
 
 export function Layout() {
   // 捕获内部错误
@@ -164,6 +145,30 @@ export function Layout() {
     ]);
     editorsInfos.value = Object.fromEntries(result);
   });
+
+  // 关闭项目和布局
+  const closeProjectAndLayout = useCallback(() => {
+    batch(() => {
+      // 如果有硬件连接，断开
+      app.appState.value?.device?.disconnect();
+      setAppState('device', null);
+      closeProject();
+      closeLayout();
+    });
+  }, []);
+
+  // 打开项目
+  const openProjectWithSplash = useCallback((data) => {
+    batch(() => {
+      showSplash();
+      openProject(
+        Object.assign(JSON.parse(JSON.stringify(data)), {
+          fileId: data.fileId ?? data.files?.[0]?.id,
+        }),
+      );
+      openTab(0);
+    });
+  }, []);
 
   // 教程显示
   //

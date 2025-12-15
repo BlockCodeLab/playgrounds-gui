@@ -1,13 +1,18 @@
 import { Text, MenuSection, MenuItem } from '@blockcode/core';
 import { FileMenu } from './file-menu';
 import { EditMenu } from './edit-menu';
-import styles from './menu-bar.module.css';
+import { ViewMenu } from './view-menu';
 
 import fileIcon from './icons/icon-file.svg';
 import editIcon from './icons/icon-edit.svg';
+import viewIcon from './icons/icon-view.svg';
 
 export function mergeMenus(editor, meta, onOpen) {
   const handleOpen = (projData) => onOpen(projData, meta.editor);
+
+  const fileMenu = editor.menuItems?.find((item) => item.id === 'file');
+  const editMenu = editor.menuItems?.find((item) => item.id === 'edit');
+  const viewMenu = editor.menuItems?.find((item) => item.id === 'view');
 
   const handelNew = async () => {
     const projData = JSON.parse(JSON.stringify(await editor.onNew()));
@@ -32,7 +37,7 @@ export function mergeMenus(editor, meta, onOpen) {
       ),
       Menu: () => (
         <FileMenu
-          ExtendedMenu={editor.menuItems?.find((item) => item.id === 'file')?.Menu}
+          ExtendedMenu={fileMenu?.Menu}
           onNew={handelNew}
           onOpen={handleOpen}
           onSave={editor.onSave}
@@ -50,7 +55,8 @@ export function mergeMenus(editor, meta, onOpen) {
       ),
       Menu: () => (
         <EditMenu
-          ExtendedMenu={editor.menuItems?.find((item) => item.id === 'edit')?.Menu}
+          enableCoding={editMenu?.disabledCoding !== true}
+          ExtendedMenu={editMenu?.Menu}
           onUndo={editor.onUndo}
           onRedo={editor.onRedo}
           onEnableUndo={editor.onEnableUndo}
@@ -58,5 +64,17 @@ export function mergeMenus(editor, meta, onOpen) {
         />
       ),
     },
-  ].concat(editor.menuItems?.filter((item) => item.id !== 'file' && item.id !== 'edit') ?? []);
+    viewMenu?.disabled !== true && {
+      icon: viewIcon,
+      label: (
+        <Text
+          id="gui.menubar.view"
+          defaultMessage="View"
+        />
+      ),
+      Menu: () => <ViewMenu ExtendedMenu={viewMenu?.Menu} />,
+    },
+  ]
+    .concat(editor.menuItems?.filter((item) => !['file', 'edit', 'view'].includes(item.id)) ?? [])
+    .filter(Boolean);
 }

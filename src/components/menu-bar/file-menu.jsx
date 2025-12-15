@@ -78,15 +78,37 @@ export function FileMenu({ onNew, onOpen, onSave, onThumb, ExtendedMenu }) {
         meta.value.monitors.splice(index, 1);
       }
     }
+
+    // 获取所有使用的扩展
+    const extensions = [];
+
+    const filteredFiles = files.value.map((file) => {
+      extensions.push(file.extensions);
+      return Object.fromEntries(
+        // 排除不保存的数据
+        Object.entries(file).filter(([key, value]) => {
+          if (['xmlDom', 'script', 'extensions'].includes(key)) return false;
+          if (!meta.value.manualCoding && key === 'content') return false;
+          return true;
+        }),
+      );
+    });
+
     // 移除扩展附件，因为每次重载扩展会自动加载
     const filteredAssets = assets.value?.filter((asset) => !asset.uri);
-    const data = await onSave(files.value, filteredAssets, meta.value);
+
+    const data = await onSave(filteredFiles, filteredAssets, meta.value);
+
+    console.log(meta.value);
     data.meta = Object.assign(data.meta ?? {}, {
       editor: meta.value.editor,
       version: meta.value.version,
       monitors: meta.value.monitors,
+      extensions: Array.from(new Set(extensions.flat())).filter(Boolean),
+      manualCoding: meta.value.manualCoding,
       users: meta.value.users,
     });
+
     data.name = name.value;
     return data;
   }, [onSave]);
