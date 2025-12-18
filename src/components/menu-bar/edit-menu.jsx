@@ -1,17 +1,27 @@
 import { useCallback, useEffect } from 'preact/hooks';
-import { batch, useSignal } from '@preact/signals';
-import { isMac } from '@blockcode/utils';
+import { batch, useSignal, useComputed } from '@preact/signals';
+import { isMac, setCompactBlock, getCompactBlock } from '@blockcode/utils';
 import { useProjectContext, Keys, setMeta } from '@blockcode/core';
 
 import { Text, MenuSection, MenuItem } from '@blockcode/core';
 import styles from './menu-bar.module.css';
 
-export function EditMenu({ enableCoding, onUndo, onRedo, onEnableUndo, onEnableRedo, ExtendedMenu }) {
+export function EditMenu({
+  enableCoding,
+  enableCompactBlock,
+  onUndo,
+  onRedo,
+  onEnableUndo,
+  onEnableRedo,
+  ExtendedMenu,
+}) {
   const { meta, key, fileId, modified } = useProjectContext();
 
   const disabledUndo = useSignal(true);
 
   const disabledRedo = useSignal(true);
+
+  const isCompactBlock = useComputed(() => meta.value.compactBlock ?? getCompactBlock());
 
   useEffect(() => {
     batch(() => {
@@ -22,6 +32,12 @@ export function EditMenu({ enableCoding, onUndo, onRedo, onEnableUndo, onEnableR
 
   const handleManualCoding = useCallback(() => {
     setMeta('manualCoding', !meta.value.manualCoding);
+  }, []);
+
+  const handleCompactBlock = useCallback(() => {
+    const newCompactBlock = !isCompactBlock.value;
+    setMeta('compactBlock', newCompactBlock);
+    setCompactBlock(newCompactBlock);
   }, []);
 
   return (
@@ -54,25 +70,47 @@ export function EditMenu({ enableCoding, onUndo, onRedo, onEnableUndo, onEnableR
         />
       </MenuSection>
 
-      {enableCoding && (
+      {(enableCoding || enableCompactBlock) && (
         <MenuSection>
-          <MenuItem
-            className={styles.menuItem}
-            label={
-              meta.value.manualCoding ? (
-                <Text
-                  id="gui.menubar.edit.closeManualCoding"
-                  defaultMessage="Turn off coding mode"
-                />
-              ) : (
-                <Text
-                  id="gui.menubar.edit.openManualCoding"
-                  defaultMessage="Turn on coding mode"
-                />
-              )
-            }
-            onClick={handleManualCoding}
-          />
+          {enableCompactBlock && (
+            <MenuItem
+              className={styles.menuItem}
+              label={
+                isCompactBlock.value ? (
+                  <Text
+                    id="gui.menubar.edit.closeCompactBlock"
+                    defaultMessage="Turn off Compact Block"
+                  />
+                ) : (
+                  <Text
+                    id="gui.menubar.edit.openCompactBlock"
+                    defaultMessage="Turn on Compact Block"
+                  />
+                )
+              }
+              onClick={handleCompactBlock}
+            />
+          )}
+
+          {enableCoding && (
+            <MenuItem
+              className={styles.menuItem}
+              label={
+                meta.value.manualCoding ? (
+                  <Text
+                    id="gui.menubar.edit.closeManualCoding"
+                    defaultMessage="Turn off Coding Mode"
+                  />
+                ) : (
+                  <Text
+                    id="gui.menubar.edit.openManualCoding"
+                    defaultMessage="Turn on Coding Mode"
+                  />
+                )
+              }
+              onClick={handleManualCoding}
+            />
+          )}
         </MenuSection>
       )}
 

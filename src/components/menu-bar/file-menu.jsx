@@ -99,13 +99,13 @@ export function FileMenu({ onNew, onOpen, onSave, onThumb, ExtendedMenu }) {
 
     const data = await onSave(filteredFiles, filteredAssets, meta.value);
 
-    console.log(meta.value);
     data.meta = Object.assign(data.meta ?? {}, {
       editor: meta.value.editor,
       version: meta.value.version,
       monitors: meta.value.monitors,
       extensions: Array.from(new Set(extensions.flat())).filter(Boolean),
       manualCoding: meta.value.manualCoding,
+      compactBlock: meta.value.compactBlock,
       users: meta.value.users,
     });
 

@@ -69,6 +69,7 @@ export function TutorialBox({ tutorialId, onOpenTutorial, onBack, onClose }) {
         posY = e.clientY;
         tutorialBox.style.top = `${tutorialBox.offsetTop - y}px`;
         tutorialBox.style.left = `${tutorialBox.offsetLeft - x}px`;
+        tutorialBox.style.bottom = 'unset';
       };
 
       const endDrag = () => {
@@ -79,6 +80,7 @@ export function TutorialBox({ tutorialId, onOpenTutorial, onBack, onClose }) {
       ref.current.addEventListener('pointerdown', (e) => {
         posX = e.clientX;
         posY = e.clientY;
+        drag(e);
         document.addEventListener('pointerup', endDrag);
         document.addEventListener('pointermove', drag);
       });

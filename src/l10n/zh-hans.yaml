@@ -55,13 +55,15 @@ gui.menubar.edit.undo: 撤销
 gui.menubar.edit.redo: 重做
 gui.menubar.edit.openManualCoding: 打开代码编程
 gui.menubar.edit.closeManualCoding: 关闭代码编程
+gui.menubar.edit.openCompactBlock: 打开紧凑积木样式
+gui.menubar.edit.closeCompactBlock: 关闭紧凑积木样式
 
 gui.menubar.view: 查看
 gui.menubar.view.log: 日志
 gui.menubar.view.serial: 串口
 gui.menubar.view.files: 文件管理
-gui.menubar.view.openAutoDisplayPanel: 打开自动显示
-gui.menubar.view.closeAutoDisplayPanel: 关闭自动显示
+gui.menubar.view.openAutoDisplayPanel: 打开自动显示日志
+gui.menubar.view.closeAutoDisplayPanel: 关闭自动显示日志
 
 gui.menubar.device: 设备
 gui.menubar.device.sync: 同步程序
@@ -74,6 +76,10 @@ gui.menubar.device.disconnect: 断开连接
 gui.menubar.device.firmware: 恢复固件…
 gui.menubar.device.firmwareVersion: 恢复 v{version} 固件…
 gui.menubar.device.caching: 正在缓存最新固件…
+
+gui.panelBox.logs: 日志
+gui.panelBox.serial: 串口
+gui.panelBox.files: 文件管理
 
 gui.project.name: 未命名作品
 gui.project.shortname: 未命名

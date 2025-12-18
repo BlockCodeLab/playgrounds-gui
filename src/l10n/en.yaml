@@ -53,15 +53,17 @@ gui.menubar.file.downloadProject: save to your computer...
 gui.menubar.edit: Edit
 gui.menubar.edit.undo: Undo
 gui.menubar.edit.redo: Redo
-gui.menubar.edit.openManualCoding: Turn on coding mode
-gui.menubar.edit.closeManualCoding: Turn off coding mode
+gui.menubar.edit.openManualCoding: Turn on Coding Mode
+gui.menubar.edit.closeManualCoding: Turn off Coding Mode
+gui.menubar.edit.openCompactBlock: Turn on Compact Block
+gui.menubar.edit.closeCompactBlock: Turn off Compact Block
 
 gui.menubar.view: View
-gui.menubar.view.log: Log panel
-gui.menubar.view.serial: Serial panel
-gui.menubar.view.files: Files panel
-gui.menubar.view.openAutoDisplayPanel: Turn on auto display panel
-gui.menubar.view.closeAutoDisplayPanel: Turn off auto display panel
+gui.menubar.view.log: Log Panel
+gui.menubar.view.serial: Serial Panel
+gui.menubar.view.files: Files Panel
+gui.menubar.view.openAutoDisplayPanel: Turn on auto display Log Panel
+gui.menubar.view.closeAutoDisplayPanel: Turn off auto display Log Panel
 
 gui.menubar.device: Device
 gui.menubar.device.sync: Sync program
@@ -74,6 +76,10 @@ gui.menubar.device.disconnect: Disconnect device
 gui.menubar.device.firmware: Restore firmware...
 gui.menubar.device.firmwareVersion: Restore v{version} firmware...
 gui.menubar.device.caching: Caching latest firmware...
+
+gui.panelBox.logs: Logs
+gui.panelBox.serial: Serial
+gui.panelBox.files: Files
 
 gui.project.name: Untitled Project
 gui.project.shortname: Untitled

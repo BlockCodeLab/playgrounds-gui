@@ -1,23 +1,34 @@
 import { useEffect, useCallback } from 'preact/hooks';
-import { batch, useSignal } from '@preact/signals';
+import { useComputed, useSignal } from '@preact/signals';
 import { classNames, getAutoDisplayPanel, setAutoDisplayPanel } from '@blockcode/utils';
-import { Keys } from '@blockcode/core';
+import { useAppContext, useProjectContext, setAppState, Keys, Text, MenuSection, MenuItem } from '@blockcode/core';
+import { PanelBoxes } from '../panel-box/panel-box';
 
-import { Text, MenuSection, MenuItem } from '@blockcode/core';
 import styles from './menu-bar.module.css';
-
 import checkIcon from './icons/icon-check.svg';
 
-export function ViewMenu({ ExtendedMenu }) {
-  const autoDisplayPanel = useSignal(true);
+export function ViewMenu({ enableFiles, ExtendedMenu }) {
+  const { appState } = useAppContext();
 
-  useEffect(() => {
-    autoDisplayPanel.value = getAutoDisplayPanel() ?? true;
-  }, []);
+  const { meta } = useProjectContext();
+
+  const autoDisplayPanel = useSignal(getAutoDisplayPanel(meta.value.editor));
+
+  const panelBoxId = useComputed(() => appState.value?.panelBoxId);
+
+  const changeView = useCallback(
+    (view) => () => {
+      if (view === panelBoxId.value) {
+        view = null;
+      }
+      setAppState('panelBoxId', view);
+    },
+    [],
+  );
 
   const handleAutoDisplayPanel = useCallback(() => {
     autoDisplayPanel.value = !autoDisplayPanel.value;
-    setAutoDisplayPanel(autoDisplayPanel.value);
+    setAutoDisplayPanel(meta.value.editor, autoDisplayPanel.value);
   }, []);
 
   return (
@@ -26,54 +37,56 @@ export function ViewMenu({ ExtendedMenu }) {
         <MenuItem
           className={styles.menuItem}
           hotkey={[Keys.CONTROL, Keys.D1]}
-          // onClick={}
+          onClick={changeView(PanelBoxes.Logs)}
         >
           <img
             className={classNames(styles.checkIcon, {
-              [styles.checked]: false,
+              [styles.checked]: panelBoxId.value === PanelBoxes.Logs,
             })}
             src={checkIcon}
           />
           <Text
             id="gui.menubar.view.log"
-            defaultMessage="Log panel"
+            defaultMessage="Log Panel"
           />
         </MenuItem>
 
         <MenuItem
           className={styles.menuItem}
           hotkey={[Keys.CONTROL, Keys.D2]}
-          // onClick={}
+          onClick={changeView(PanelBoxes.Serial)}
         >
           <img
             className={classNames(styles.checkIcon, {
-              [styles.checked]: false,
+              [styles.checked]: panelBoxId.value === PanelBoxes.Serial,
             })}
             src={checkIcon}
           />
           <Text
             id="gui.menubar.view.serial"
-            defaultMessage="Serial panel"
+            defaultMessage="Serial Panel"
           />
         </MenuItem>
 
-        <MenuItem
-          disabled
-          className={styles.menuItem}
-          hotkey={[Keys.CONTROL, Keys.D3]}
-          // onClick={}
-        >
-          <img
-            className={classNames(styles.checkIcon, {
-              [styles.checked]: false,
-            })}
-            src={checkIcon}
-          />
-          <Text
-            id="gui.menubar.view.files"
-            defaultMessage="Files panel"
-          />
-        </MenuItem>
+        {enableFiles && (
+          <MenuItem
+            disabled
+            className={styles.menuItem}
+            hotkey={[Keys.CONTROL, Keys.D3]}
+            onClick={changeView(PanelBoxes.Files)}
+          >
+            <img
+              className={classNames(styles.checkIcon, {
+                [styles.checked]: panelBoxId.value === PanelBoxes.Files,
+              })}
+              src={checkIcon}
+            />
+            <Text
+              id="gui.menubar.view.files"
+              defaultMessage="Files Panel"
+            />
+          </MenuItem>
+        )}
       </MenuSection>
 
       {ExtendedMenu && <ExtendedMenu itemClassName={styles.menuItem} />}

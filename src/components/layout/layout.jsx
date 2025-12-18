@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useErrorBoundary } from 'preact/hooks';
 import { batch, useComputed, useSignal, useSignalEffect } from '@preact/signals';
-import { isElectron, classNames, keyMirror, openProjectFromURL } from '@blockcode/utils';
+import { isElectron, classNames, keyMirror, openProjectFromURL, getAutoDisplayPanel } from '@blockcode/utils';
 import {
   useAppContext,
   useLocalesContext,
@@ -27,7 +27,7 @@ import { Alerts } from '../alerts/alerts';
 import { ConnectionModal } from '../connection-modal/connection-modal';
 import { Home } from '../home/home';
 import { MenuBar } from '../menu-bar/menu-bar';
-import { PaneBox } from '../panes-view/pane-box';
+import { Pane } from '../pane/pane';
 import { PromptModal } from '../prompt-modal/prompt-modal';
 import { InputsPromptModal } from '../prompt-modal/inputs-prompt-modal';
 import { Splash } from '../splash/splash';
@@ -35,6 +35,7 @@ import { Tabs, TabLabel, TabPanel } from '../tabs/tabs';
 import { TutorialBox } from '../tutorial-box/tutorial-box';
 import { TutorialLibrary } from '../tutorial-library/tutorial-library';
 import { UserStorage } from '../user-storage/user-storage';
+import { PanelBox } from '../panel-box/panel-box';
 import styles from './layout.module.css';
 
 import getEditors from '../../lib/get-editors';
@@ -65,19 +66,22 @@ export function Layout() {
     }
   }, [language.value]);
 
-  // 侧边栏
-  let LeftDockContent, RightDockContent;
-  app.docks.value?.forEach((dock) => {
-    if (dock.expand === 'left') {
-      LeftDockContent = dock.Content;
-    } else {
-      RightDockContent = dock.Content;
-    }
+  // 边栏
+  const docks = useComputed(() => {
+    const result = {};
+    app.docks.value?.forEach((dock) => {
+      if (dock.expand === 'bottom') {
+        result.paneLabel = dock.label;
+        result.PaneContent = dock.Content;
+      } else if (dock.expand === 'left') {
+        result.LeftDockContent = dock.Content;
+      } else {
+        result.RightDockContent = dock.Content;
+      }
+    });
+    return result;
   });
-
-  // 底边栏
-  // [TODO] 多标签页底边栏
-  const PaneContent = app.panes.value?.[0].Content;
+  const { LeftDockContent, RightDockContent, PaneContent } = docks.value;
 
   // 根据侧边栏和底边栏调整标签页样式
   const tabPanelClass = classNames({
@@ -326,7 +330,6 @@ export function Layout() {
       menuItems: mergeMenus(editor, meta, openProjectViaEditor),
       tabs: editor.tabs,
       docks: editor.docks,
-      panes: editor.panes,
       tutorials: window.electron?.getLocalTutorials(editorId, language.value) ?? editor.tutorials, // 优先本地离线教程
     };
 
@@ -345,6 +348,18 @@ export function Layout() {
     }
     openProjectViaEditor(projData, meta.value.editor);
   }, []);
+
+  // 自动显示日志面板
+  useEffect(() => {
+    if (meta.value?.editor) {
+      const autoDisplay = getAutoDisplayPanel(meta.value.editor);
+      if (autoDisplay) {
+        setAppState('panelBoxId', 'Logs');
+      }
+    } else {
+      setAppState('panelBoxId', null);
+    }
+  }, [meta.value?.editor]);
 
   return (
     <>
@@ -396,15 +411,15 @@ export function Layout() {
             </Tabs>
 
             {PaneContent && (
-              <PaneBox
+              <Pane
                 id={styles.paneWrapper}
                 className={styles.paneWrapper}
-                title={pane.label}
+                title={docks.value.paneLabel}
                 right={!RightDockContent}
                 left={!LeftDockContent}
               >
                 <PaneContent />
-              </PaneBox>
+              </Pane>
             )}
           </div>
 
@@ -415,6 +430,14 @@ export function Layout() {
           )}
         </div>
       </div>
+
+      {app.appState.value?.panelBoxId && (
+        <PanelBox
+          panelId={app.appState.value.panelBoxId}
+          onPanelChange={useCallback((id) => setAppState('panelBoxId', id), [])}
+          onClose={useCallback(() => setAppState('panelBoxId', null), [])}
+        />
+      )}
 
       {foundDevices.value && (
         <ConnectionModal

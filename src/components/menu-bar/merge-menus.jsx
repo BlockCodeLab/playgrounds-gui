@@ -1,4 +1,5 @@
-import { Text, MenuSection, MenuItem } from '@blockcode/core';
+import { getAutoDisplayPanel, setAutoDisplayPanel } from '@blockcode/utils';
+import { Text } from '@blockcode/core';
 import { FileMenu } from './file-menu';
 import { EditMenu } from './edit-menu';
 import { ViewMenu } from './view-menu';
@@ -14,6 +15,9 @@ export function mergeMenus(editor, meta, onOpen) {
   const editMenu = editor.menuItems?.find((item) => item.id === 'edit');
   const viewMenu = editor.menuItems?.find((item) => item.id === 'view');
 
+  const autoDisplayPanel = getAutoDisplayPanel(meta.editor) ?? viewMenu?.autoDisplayPanel === true;
+  setAutoDisplayPanel(meta.editor, autoDisplayPanel);
+
   const handelNew = async () => {
     const projData = JSON.parse(JSON.stringify(await editor.onNew()));
     if (!projData.meta) {
@@ -28,6 +32,7 @@ export function mergeMenus(editor, meta, onOpen) {
 
   return [
     {
+      id: 'file',
       icon: fileIcon,
       label: (
         <Text
@@ -44,8 +49,10 @@ export function mergeMenus(editor, meta, onOpen) {
           onThumb={editor.onThumb}
         />
       ),
+      options: fileMenu,
     },
     {
+      id: 'edit',
       icon: editIcon,
       label: (
         <Text
@@ -56,6 +63,7 @@ export function mergeMenus(editor, meta, onOpen) {
       Menu: () => (
         <EditMenu
           enableCoding={editMenu?.disabledCoding !== true}
+          enableCompactBlock={editMenu?.disabledCompactBlock !== true}
           ExtendedMenu={editMenu?.Menu}
           onUndo={editor.onUndo}
           onRedo={editor.onRedo}
@@ -63,8 +71,10 @@ export function mergeMenus(editor, meta, onOpen) {
           onEnableRedo={editor.onEnableRedo}
         />
       ),
+      options: editMenu,
     },
     viewMenu?.disabled !== true && {
+      id: 'view',
       icon: viewIcon,
       label: (
         <Text
@@ -72,7 +82,13 @@ export function mergeMenus(editor, meta, onOpen) {
           defaultMessage="View"
         />
       ),
-      Menu: () => <ViewMenu ExtendedMenu={viewMenu?.Menu} />,
+      Menu: () => (
+        <ViewMenu
+          enableFiles={viewMenu?.disabledFiles !== true}
+          ExtendedMenu={viewMenu?.Menu}
+        />
+      ),
+      options: viewMenu,
     },
   ]
     .concat(editor.menuItems?.filter((item) => !['file', 'edit', 'view'].includes(item.id)) ?? [])

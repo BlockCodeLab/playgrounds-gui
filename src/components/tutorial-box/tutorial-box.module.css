@@ -3,8 +3,8 @@
   pointer-events: auto;
   z-index: var(--z-index-card);
   min-width: 468px;
-  top: 55%;
   left: 50%;
+  bottom: 10%;
   transform: translateX(-50%);
 }
 

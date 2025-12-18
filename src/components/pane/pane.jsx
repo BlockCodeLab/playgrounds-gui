@@ -1,7 +1,7 @@
 import { classNames } from '@blockcode/utils';
-import styles from './panes-view.module.css';
+import styles from './pane.module.css';
 
-export function PaneBox({ className, id, title, left, right, children }) {
+export function Pane({ className, id, title, left, right, children }) {
   return (
     <div
       className={classNames(styles.paneWrapper, className, {
