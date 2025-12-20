@@ -9,9 +9,10 @@ export function LogsPanel() {
       textValue={logs.value}
       options={{
         theme: {
-          cursor: themeColors.ui.text.primary,
+          cursor: '#fff',
           foreground: themeColors.ui.text.primary,
           background: '#fff',
+          selection: themeColors.ui.text.primary,
         },
       }}
     />

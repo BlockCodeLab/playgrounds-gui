@@ -85,7 +85,7 @@ export function TutorialBox({ tutorialId, onOpenTutorial, onBack, onClose }) {
         document.addEventListener('pointermove', drag);
       });
     }
-  }, [ref]);
+  }, []);
 
   return (
     <div className={styles.tutorialBoxWrapper}>

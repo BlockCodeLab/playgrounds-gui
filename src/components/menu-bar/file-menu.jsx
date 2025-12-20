@@ -227,6 +227,7 @@ export function FileMenu({ onNew, onOpen, onSave, onThumb, ExtendedMenu }) {
 
       {ExtendedMenu && (
         <ExtendedMenu
+          className={styles.menu}
           itemClassName={styles.menuItem}
           onOpen={onOpen}
           onSave={getProjectData}

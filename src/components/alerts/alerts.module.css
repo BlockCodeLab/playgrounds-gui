@@ -58,6 +58,11 @@
   color: #555;
 }
 
+.buttons-group {
+  display: flex;
+  align-items: center;
+}
+
 .button {
   color: var(--ui-white);
   background: #ff8c1a;

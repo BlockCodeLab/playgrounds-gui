@@ -14,22 +14,24 @@ export function Alert({ mode, icon, message, options, button, onClose }) {
     >
       <div className={styles.icon}>{typeof icon === 'string' ? <img src={icon} /> : icon}</div>
       <div className={styles.message}>{maybeTranslate(message, options)}</div>
-      {button && (
-        <Button
-          className={styles.button}
-          onClick={button.onClick}
-        >
-          {button.label}
-        </Button>
-      )}
-      {onClose && (
-        <Button
-          className={styles.closeButton}
-          onClick={onClose}
-        >
-          <img src={closeIcon} />
-        </Button>
-      )}
+      <div className={styles.buttonsGroup}>
+        {button && (
+          <Button
+            className={styles.button}
+            onClick={button.onClick}
+          >
+            {button.label}
+          </Button>
+        )}
+        {onClose && (
+          <Button
+            className={styles.closeButton}
+            onClick={onClose}
+          >
+            <img src={closeIcon} />
+          </Button>
+        )}
+      </div>
     </div>
   );
 }

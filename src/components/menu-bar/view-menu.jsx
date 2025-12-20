@@ -89,7 +89,12 @@ export function ViewMenu({ enableFiles, ExtendedMenu }) {
         )}
       </MenuSection>
 
-      {ExtendedMenu && <ExtendedMenu itemClassName={styles.menuItem} />}
+      {ExtendedMenu && (
+        <ExtendedMenu
+          className={styles.menu}
+          itemClassName={styles.menuItem}
+        />
+      )}
 
       <MenuSection>
         <MenuItem

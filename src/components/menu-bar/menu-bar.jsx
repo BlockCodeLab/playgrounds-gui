@@ -79,7 +79,12 @@ export function MenuBar({ className, showHomeButton, onRequestHome, onOpenTutori
                   name={index}
                   key={index}
                 >
-                  {<MenuContent itemClassName={styles.menuItem} />}
+                  {
+                    <MenuContent
+                      className={styles.menu}
+                      itemClassName={styles.menuItem}
+                    />
+                  }
                 </Menu>
               </>
             ))}

@@ -103,10 +103,14 @@ input.menu-label:checked+.menu-bar-item {
   background: var(--ui-black-transparent);
 }
 
+.main-menu > .menu {
+  border-radius: 0 0 var(--space) var(--space);
+}
+
 .menu {
   top: var(--menu-bar-height);
   z-index: var(--z-index-menu-bar);
-  border-radius: 0 0 var(--space) var(--space);
+  border-radius: var(--space);
   color: var(--ui-white);
   background: var(--theme-primary);
   display: none;
