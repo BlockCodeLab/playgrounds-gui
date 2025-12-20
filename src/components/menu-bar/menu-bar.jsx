@@ -2,7 +2,7 @@ import { useEffect } from 'preact/hooks';
 import { classNames, isMac } from '@blockcode/utils';
 import { useLocalesContext, useAppContext, setLanguage, translate, setMacosMenuBarStyled } from '@blockcode/core';
 
-import { Menu, MenuItem } from '@blockcode/core';
+import { Menu, MenuItem, Tooltip } from '@blockcode/core';
 import { MainMenu } from './main-menu';
 import { MenuLabel } from './menu-label';
 import { TutorialsButton } from './tutorials-button';
@@ -17,7 +17,7 @@ import homeIcon from './icons/icon-home.svg';
 export function MenuBar({ className, showHomeButton, onRequestHome, onOpenTutorialLibrary }) {
   const { language, languageNames } = useLocalesContext();
 
-  const { menuItems, tutorials, macosMenuBarStyled } = useAppContext();
+  const { barItems, menuItems, tutorials, macosMenuBarStyled } = useAppContext();
 
   // Electron
   useEffect(() => {
@@ -101,15 +101,30 @@ export function MenuBar({ className, showHomeButton, onRequestHome, onOpenTutori
       </div>
 
       <div className={styles.rightMenu}>
+        {barItems.value &&
+          barItems.value.map((item) =>
+            item.tooltip ? (
+              <Tooltip
+                placement={item.tooltipPlacement ?? 'bottom'}
+                content={item.tooltip}
+              >
+                <div className={classNames(styles.menuBarItem, styles.hoverable)}>{item.label}</div>
+              </Tooltip>
+            ) : (
+              <div
+                className={classNames(styles.menuBarItem, styles.hoverable)}
+                onClick={item.onClick}
+              >
+                {item.label}
+              </div>
+            ),
+          )}
         {showHomeButton && (
           <div
             className={classNames(styles.menuBarItem, styles.hoverable)}
             onClick={onRequestHome}
           >
-            <img
-              className={styles.homeIcon}
-              src={homeIcon}
-            />
+            <img src={homeIcon} />
           </div>
         )}
       </div>

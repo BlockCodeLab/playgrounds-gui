@@ -190,8 +190,7 @@ input.menu-label:checked+.menu-bar-item {
   color: var(--text-primary);
 }
 
-.home-icon,
-.closeIcon {
+.right-menu .menu-bar-item>img {
   padding: 0 0.35rem;
 }
 

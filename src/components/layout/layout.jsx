@@ -328,6 +328,7 @@ export function Layout() {
 
     const layout = {
       menuItems: mergeMenus(editor, meta, openProjectViaEditor),
+      barItems: editor.barItems,
       tabs: editor.tabs,
       docks: editor.docks,
       tutorials: window.electron?.getLocalTutorials(editorId, language.value) ?? editor.tutorials, // 优先本地离线教程
