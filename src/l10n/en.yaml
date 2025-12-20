@@ -22,6 +22,16 @@ gui.alert.savedComputer: Saved to your computer.
 gui.alert.saveAbortError: Abort saving.
 gui.alert.saveError: Failed save.
 
+gui.logs.changeDevice: Device changed to {device}
+gui.logs.connected: Device connected
+gui.logs.connectedType: Device connected with {type}
+gui.logs.disconnected: Device disconnected
+gui.logs.compiling: Compiling...
+gui.logs.compiled: Compile completed
+gui.logs.downloading: Downloading...
+gui.logs.downloaded: Download completed
+gui.logs.downloadError: Download failed
+
 gui.home.my: My projects
 gui.home.all: View all
 gui.home.allCounts: View all ({counts})

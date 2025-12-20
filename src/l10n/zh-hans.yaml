@@ -22,6 +22,16 @@ gui.alert.savedComputer: 已保存到电脑。
 gui.alert.saveAbortError: 取消保存。
 gui.alert.saveError: 保存作品失败。
 
+gui.logs.changeDevice: 设备已更改为 {device}
+gui.logs.connected: 设备已连接
+gui.logs.connectedType: 设备已连接到 {type}
+gui.logs.disconnected: 设备断开连接
+gui.logs.compiling: 程序编译中…
+gui.logs.compiled: 编译完成
+gui.logs.downloading: 下载程序到设备…
+gui.logs.downloaded: 下载完成
+gui.logs.downloadError: 下载失败
+
 gui.home.my: 我的作品
 gui.home.all: 查看全部
 gui.home.allCounts: 查看全部（{counts}）

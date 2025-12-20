@@ -22,6 +22,16 @@ gui.alert.savedComputer: 已保存到電腦。
 gui.alert.saveAbortError: 取消保存。
 gui.alert.saveError: 保存專案失敗。
 
+gui.logs.changeDevice: 設備已更改為 {device}
+gui.logs.connected: 設備已連接
+gui.logs.connectedType: 設備已連接到 {type}
+gui.logs.disconnected: 設備斷開連接
+gui.logs.compiling: 程序編譯中…
+gui.logs.compiled: 編譯完成
+gui.logs.downloading: 下載程序到設備…
+gui.logs.downloaded: 下載完成
+gui.logs.downloadError: 下載失敗
+
 gui.home.my: 我的專案
 gui.home.all: 查看全部
 gui.home.allCounts: 查看全部（{counts}）
