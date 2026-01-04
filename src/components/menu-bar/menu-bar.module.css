@@ -50,6 +50,11 @@
   flex: 1;
 }
 
+.menu-bar-item[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .main-menu {
   display: flex;
   flex-direction: row;
@@ -146,7 +151,7 @@ input.menu-label:checked+.menu-bar-item {
   border-right: 1px dashed var(--ui-black-transparent);
 }
 
-.hoverable:hover {
+.hoverable:not([disabled]):hover {
   cursor: pointer;
   background: var(--ui-black-transparent);
 }
@@ -190,7 +195,7 @@ input.menu-label:checked+.menu-bar-item {
   color: var(--text-primary);
 }
 
-.right-menu .menu-bar-item>img {
+.menu-bar-icon>img {
   padding: 0 0.35rem;
 }
 

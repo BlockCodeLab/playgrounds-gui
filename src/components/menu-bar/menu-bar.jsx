@@ -1,3 +1,4 @@
+import { useComputed } from '@preact/signals';
 import { useEffect } from 'preact/hooks';
 import { classNames, isMac } from '@blockcode/utils';
 import { useLocalesContext, useAppContext, setLanguage, translate, setMacosMenuBarStyled } from '@blockcode/core';
@@ -18,6 +19,9 @@ export function MenuBar({ className, showHomeButton, onRequestHome, onOpenTutori
   const { language, languageNames } = useLocalesContext();
 
   const { barItems, menuItems, tutorials, macosMenuBarStyled } = useAppContext();
+
+  const leftItems = useComputed(() => barItems.value?.filter((item) => item.align !== 'right'));
+  const rightItems = useComputed(() => barItems.value?.filter((item) => item.align === 'right'));
 
   // Electron
   useEffect(() => {
@@ -98,30 +102,66 @@ export function MenuBar({ className, showHomeButton, onRequestHome, onOpenTutori
             defaultValue={translate('gui.project.name', 'BlockCode Project')}
           />
         )}
-      </div>
 
-      <div className={styles.rightMenu}>
-        {barItems.value &&
-          barItems.value.map((item) =>
+        {leftItems.value?.length > 0 &&
+          leftItems.value.map(({ Label, ...item }) =>
             item.tooltip ? (
               <Tooltip
                 placement={item.tooltipPlacement ?? 'bottom'}
                 content={item.tooltip}
               >
-                <div className={classNames(styles.menuBarItem, styles.hoverable)}>{item.label}</div>
+                {Label ? (
+                  <Label className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)} />
+                ) : (
+                  <div className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)}>
+                    {item.label}
+                  </div>
+                )}
               </Tooltip>
+            ) : Label ? (
+              <Label className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)} />
             ) : (
               <div
-                className={classNames(styles.menuBarItem, styles.hoverable)}
+                className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)}
                 onClick={item.onClick}
               >
                 {item.label}
               </div>
             ),
           )}
+      </div>
+
+      <div className={styles.rightMenu}>
+        {rightItems.value?.length > 0 &&
+          rightItems.value.map(({ Label, ...item }) =>
+            item.tooltip ? (
+              <Tooltip
+                placement={item.tooltipPlacement ?? 'bottom'}
+                content={item.tooltip}
+              >
+                {Label ? (
+                  <Label className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)} />
+                ) : (
+                  <div className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)}>
+                    {item.label}
+                  </div>
+                )}
+              </Tooltip>
+            ) : Label ? (
+              <Label className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)} />
+            ) : (
+              <div
+                className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)}
+                onClick={item.onClick}
+              >
+                {item.label}
+              </div>
+            ),
+          )}
+
         {showHomeButton && (
           <div
-            className={classNames(styles.menuBarItem, styles.hoverable)}
+            className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)}
             onClick={onRequestHome}
           >
             <img src={homeIcon} />
