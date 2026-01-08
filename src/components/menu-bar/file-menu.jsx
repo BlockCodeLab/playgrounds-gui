@@ -96,10 +96,8 @@ export function FileMenu({ onNew, onOpen, onSave, onThumb, ExtendedMenu }) {
     });
 
     if (meta.value.manualCoding) {
-      console.log(extensions, loadedExtensions);
       extensions.push(Array.from(loadedExtensions.keys()));
     }
-    console.log(extensions);
 
     // 移除扩展附件，因为每次重载扩展会自动加载
     const filteredAssets = assets.value?.filter((asset) => !asset.uri);
