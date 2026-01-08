@@ -86,7 +86,7 @@
   padding: 0 0.75rem;
 }
 
-.menu-label img {
+.menu-label img:not(:only-child) {
   margin-right: 0.25rem;
 }
 
@@ -193,10 +193,6 @@ input.menu-label:checked+.menu-bar-item {
   box-shadow: 0 0 0 calc(var(--space) * 0.5) var(--ui-white-transparent);
   background-color: var(--ui-white);
   color: var(--text-primary);
-}
-
-.menu-bar-icon>img {
-  padding: 0 0.35rem;
 }
 
 .blank-check-item>div {

@@ -76,7 +76,7 @@ export function MenuBar({ className, showHomeButton, onRequestHome, onOpenTutori
                   key={index}
                 >
                   {typeof icon === 'string' ? <img src={icon} /> : icon}
-                  {label}
+                  <span>{label}</span>
                 </MenuLabel>
                 <Menu
                   className={styles.menu}
@@ -111,22 +111,22 @@ export function MenuBar({ className, showHomeButton, onRequestHome, onOpenTutori
                 content={item.tooltip}
               >
                 {Label ? (
-                  <Label className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)} />
+                  <Label className={classNames(styles.menuBarItem, styles.menuLabel, styles.hoverable)} />
                 ) : (
-                  <div className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)}>
+                  <label className={classNames(styles.menuBarItem, styles.menuLabel, styles.hoverable)}>
                     {item.label}
-                  </div>
+                  </label>
                 )}
               </Tooltip>
             ) : Label ? (
-              <Label className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)} />
+              <Label className={classNames(styles.menuBarItem, styles.menuLabel, styles.hoverable)} />
             ) : (
-              <div
-                className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)}
+              <label
+                className={classNames(styles.menuBarItem, styles.menuLabel, styles.hoverable)}
                 onClick={item.onClick}
               >
                 {item.label}
-              </div>
+              </label>
             ),
           )}
       </div>
@@ -140,32 +140,32 @@ export function MenuBar({ className, showHomeButton, onRequestHome, onOpenTutori
                 content={item.tooltip}
               >
                 {Label ? (
-                  <Label className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)} />
+                  <Label className={classNames(styles.menuBarItem, styles.menuLabel, styles.hoverable)} />
                 ) : (
-                  <div className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)}>
+                  <label className={classNames(styles.menuBarItem, styles.menuLabel, styles.hoverable)}>
                     {item.label}
-                  </div>
+                  </label>
                 )}
               </Tooltip>
             ) : Label ? (
-              <Label className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)} />
+              <Label className={classNames(styles.menuBarItem, styles.menuLabel, styles.hoverable)} />
             ) : (
-              <div
-                className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)}
+              <label
+                className={classNames(styles.menuBarItem, styles.menuLabel, styles.hoverable)}
                 onClick={item.onClick}
               >
                 {item.label}
-              </div>
+              </label>
             ),
           )}
 
         {showHomeButton && (
-          <div
-            className={classNames(styles.menuBarItem, styles.menuBarIcon, styles.hoverable)}
+          <label
+            className={classNames(styles.menuBarItem, styles.menuLabel, styles.hoverable)}
             onClick={onRequestHome}
           >
             <img src={homeIcon} />
-          </div>
+          </label>
         )}
       </div>
     </div>
