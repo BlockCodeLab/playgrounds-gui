@@ -9,6 +9,7 @@ import {
   sleepMs,
 } from '@blockcode/utils';
 import { useProjectContext, setAlert, openUserStorage, setFile, setModified, ModifyTypes, Keys } from '@blockcode/core';
+import { loadedExtensions } from '@blockcode/blocks';
 
 import { Text, MenuSection, MenuItem } from '@blockcode/core';
 import styles from './menu-bar.module.css';
@@ -93,6 +94,12 @@ export function FileMenu({ onNew, onOpen, onSave, onThumb, ExtendedMenu }) {
         }),
       );
     });
+
+    if (meta.value.manualCoding) {
+      console.log(extensions, loadedExtensions);
+      extensions.push(Array.from(loadedExtensions.keys()));
+    }
+    console.log(extensions);
 
     // 移除扩展附件，因为每次重载扩展会自动加载
     const filteredAssets = assets.value?.filter((asset) => !asset.uri);
