@@ -21,6 +21,8 @@ gui.alert.saved: 已保存。
 gui.alert.savedComputer: 已保存到电脑。
 gui.alert.saveAbortError: 取消保存。
 gui.alert.saveError: 保存作品失败。
+gui.alert.logsCopied: 日志已复制。
+gui.alert.logsCopyFailed: 日志复制失败。
 
 gui.logs.changeDevice: 设备已更改为 {device}
 gui.logs.connected: 设备已连接
@@ -88,8 +90,11 @@ gui.menubar.device.firmwareVersion: 恢复 v{version} 固件…
 gui.menubar.device.caching: 正在缓存最新固件…
 
 gui.panelBox.logs: 日志
+gui.panelBox.logsCopy: 复制
 gui.panelBox.serial: 串口
+gui.panelBox.serialClean: 清除
 gui.panelBox.files: 文件管理
+gui.panelBox.logsAdd: 添加
 
 gui.project.name: 未命名作品
 gui.project.shortname: 未命名

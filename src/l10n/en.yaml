@@ -21,6 +21,8 @@ gui.alert.saved: Saved.
 gui.alert.savedComputer: Saved to your computer.
 gui.alert.saveAbortError: Abort saving.
 gui.alert.saveError: Failed save.
+gui.alert.logsCopied: Logs copied to clipboard.
+gui.alert.logsCopyFailed: Failed to copy logs to clipboard.
 
 gui.logs.changeDevice: Device changed to {device}
 gui.logs.connected: Device connected
@@ -88,8 +90,11 @@ gui.menubar.device.firmwareVersion: Restore v{version} firmware...
 gui.menubar.device.caching: Caching latest firmware...
 
 gui.panelBox.logs: Logs
+gui.panelBox.logsCopy: Copy
 gui.panelBox.serial: Serial
+gui.panelBox.serialClean: Clean
 gui.panelBox.files: Files
+gui.panelBox.filesAdd: Add
 
 gui.project.name: Untitled Project
 gui.project.shortname: Untitled

@@ -21,6 +21,8 @@ gui.alert.saved: 已保存。
 gui.alert.savedComputer: 已保存到電腦。
 gui.alert.saveAbortError: 取消保存。
 gui.alert.saveError: 保存專案失敗。
+gui.alert.logsCopied: 日誌已複製。
+gui.alert.logsCopyFailed: 日誌複製失敗。
 
 gui.logs.changeDevice: 設備已更改為 {device}
 gui.logs.connected: 設備已連接
@@ -88,8 +90,11 @@ gui.menubar.device.firmwareVersion: 還原 v{version} 固件…
 gui.menubar.device.caching: 正在緩存最新固件…
 
 gui.panelBox.logs: 日誌
+gui.panelBox.logsCopy: 複製
 gui.panelBox.serial: 串口
+gui.panelBox.serialClean: 清除
 gui.panelBox.files: 文檔管理
+gui.panelBox.logsAdd: 添加
 
 gui.project.name: 未命名專案
 gui.project.shortname: 未命名
