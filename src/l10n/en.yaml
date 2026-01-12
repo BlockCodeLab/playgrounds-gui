@@ -69,6 +69,9 @@ gui.menubar.edit.openManualCoding: Turn on Coding Mode
 gui.menubar.edit.closeManualCoding: Turn off Coding Mode
 gui.menubar.edit.openCompactBlock: Turn on Compact Block
 gui.menubar.edit.closeCompactBlock: Turn off Compact Block
+gui.menubar.edit.blockActual: Actual Size Blocks
+gui.menubar.edit.blockLarger: Larger Size Blocks
+gui.menubar.edit.blockSmaller: Smaller Size Blocks
 
 gui.menubar.view: View
 gui.menubar.view.log: Log Panel

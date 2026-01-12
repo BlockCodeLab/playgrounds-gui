@@ -1,20 +1,19 @@
 import { useCallback, useEffect } from 'preact/hooks';
 import { batch, useSignal, useComputed } from '@preact/signals';
-import { isMac, setCompactBlock, getCompactBlock } from '@blockcode/utils';
-import { useProjectContext, Keys, setMeta } from '@blockcode/core';
+import { isMac, MathUtils, setCompactBlock, getCompactBlock, getBlockSize, setBlockSize } from '@blockcode/utils';
+import { useAppContext, useProjectContext, Keys, setAppState, setMeta } from '@blockcode/core';
+import { BlocksDefaultOptions } from '@blockcode/blocks';
 
 import { Text, MenuSection, MenuItem } from '@blockcode/core';
 import styles from './menu-bar.module.css';
 
-export function EditMenu({
-  enableCoding,
-  enableCompactBlock,
-  onUndo,
-  onRedo,
-  onEnableUndo,
-  onEnableRedo,
-  ExtendedMenu,
-}) {
+const startScale = BlocksDefaultOptions.zoom.startScale;
+const maxScale = MathUtils.round(startScale + 0.2, 1);
+const minScale = MathUtils.round(startScale - 0.2, 1);
+
+export function EditMenu({ enableCoding, enableBlockStyle, onUndo, onRedo, onEnableUndo, onEnableRedo, ExtendedMenu }) {
+  const { appState } = useAppContext();
+
   const { meta, key, fileId, modified } = useProjectContext();
 
   const disabledUndo = useSignal(true);
@@ -22,6 +21,8 @@ export function EditMenu({
   const disabledRedo = useSignal(true);
 
   const isCompactBlock = useComputed(() => meta.value.compactBlock ?? getCompactBlock());
+
+  const blockSize = useComputed(() => appState.value?.blockSize ?? getBlockSize() ?? startScale);
 
   useEffect(() => {
     batch(() => {
@@ -38,6 +39,27 @@ export function EditMenu({
     const newCompactBlock = !isCompactBlock.value;
     setMeta('compactBlock', newCompactBlock);
     setCompactBlock(newCompactBlock);
+  }, []);
+
+  const handleActualBlock = useCallback(() => {
+    setAppState('blockSize', startScale);
+    setBlockSize(blockSize.value);
+  }, []);
+
+  const handleLargerBlock = useCallback(() => {
+    if (blockSize.value < maxScale) {
+      const newSize = MathUtils.round(blockSize.value + 0.1, 1);
+      setAppState('blockSize', newSize);
+      setBlockSize(newSize);
+    }
+  }, []);
+
+  const handleSmallerBlock = useCallback(() => {
+    if (blockSize.value > minScale) {
+      const newSize = MathUtils.round(blockSize.value - 0.1, 1);
+      setAppState('blockSize', newSize);
+      setBlockSize(newSize);
+    }
   }, []);
 
   return (
@@ -70,13 +92,51 @@ export function EditMenu({
         />
       </MenuSection>
 
-      {(enableCoding || enableCompactBlock) && (
+      {enableBlockStyle && (
         <MenuSection>
-          {enableCompactBlock && (
+          <MenuItem
+            disabled={blockSize.value === startScale}
+            className={styles.menuItem}
+            label={
+              <Text
+                id="gui.menubar.edit.blockActual"
+                defaultMessage="Actual Size Blocks"
+              />
+            }
+            onClick={handleActualBlock}
+          />
+          <MenuItem
+            disabled={blockSize.value >= maxScale}
+            className={styles.menuItem}
+            label={
+              <Text
+                id="gui.menubar.edit.blockLarger"
+                defaultMessage="Larger Size Blocks"
+              />
+            }
+            onClick={handleLargerBlock}
+          />
+          <MenuItem
+            disabled={blockSize.value <= minScale}
+            className={styles.menuItem}
+            label={
+              <Text
+                id="gui.menubar.edit.blockSmaller"
+                defaultMessage="Smaller Size Blocks"
+              />
+            }
+            onClick={handleSmallerBlock}
+          />
+        </MenuSection>
+      )}
+
+      {(enableCoding || enableBlockStyle) && (
+        <MenuSection>
+          {enableBlockStyle && (
             <MenuItem
               className={styles.menuItem}
               label={
-                isCompactBlock.value ? (
+                isCompactBlock.value !== false ? (
                   <Text
                     id="gui.menubar.edit.closeCompactBlock"
                     defaultMessage="Turn off Compact Block"

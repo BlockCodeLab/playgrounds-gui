@@ -69,6 +69,9 @@ gui.menubar.edit.openManualCoding: 打開代碼編程
 gui.menubar.edit.closeManualCoding: 關閉代碼編程
 gui.menubar.edit.openCompactBlock: 打開緊湊積木樣式
 gui.menubar.edit.closeCompactBlock: 關閉緊湊積木樣式
+gui.menubar.edit.blockActual: 原始尺寸積木
+gui.menubar.edit.blockLarger: 更大的積木
+gui.menubar.edit.blockSmaller: 更小的積木
 
 gui.menubar.view: 查看
 gui.menubar.view.log: 日誌

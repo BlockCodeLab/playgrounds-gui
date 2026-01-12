@@ -63,7 +63,7 @@ export function mergeMenus(editor, meta, onOpen) {
       Menu: () => (
         <EditMenu
           enableCoding={editMenu?.disabledCoding !== true}
-          enableCompactBlock={editMenu?.disabledCompactBlock !== true}
+          enableBlockStyle={editMenu?.disabledBlockStyle !== true}
           ExtendedMenu={editMenu?.Menu}
           onUndo={editor.onUndo}
           onRedo={editor.onRedo}
