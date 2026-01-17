@@ -36,6 +36,18 @@ addAlertConfig('downloadCompleted', {
   ),
 });
 
+// 下载失败
+addAlertConfig('downloadError', {
+  icon: null,
+  type: 'warn',
+  message: (
+    <Text
+      id="gui.alert.downloadError"
+      defaultMessage="Download failed."
+    />
+  ),
+});
+
 // 正在连接
 addAlertConfig('connecting', {
   icon: <Spinner level="success" />,
@@ -66,6 +78,18 @@ addAlertConfig('connectionCancel', {
     <Text
       id="gui.alert.connectionCancel"
       defaultMessage="Connection cancel."
+    />
+  ),
+});
+
+// 设备未响应
+addAlertConfig('connectionBusy', {
+  icon: null,
+  mode: 'warn',
+  message: (
+    <Text
+      id="gui.alert.connectionBusy"
+      defaultMessage="Device not respond."
     />
   ),
 });
