@@ -66,6 +66,13 @@ export function Layout() {
     }
   }, [language.value]);
 
+  const urlHash = useComputed(() => {
+    const hash = window.location.hash.replace(/^#\//, '');
+    const parts = hash.split('?');
+    const editorId = parts[0];
+    return { editorId };
+  });
+
   // 边栏
   const docks = useComputed(() => {
     const result = {};
@@ -289,6 +296,9 @@ export function Layout() {
 
     let editor;
     try {
+      if (editorId !== urlHash.value.editorId) {
+        window.location.hash = '';
+      }
       editor = (await import(moduleName)).default;
     } catch (err) {
       if (DEBUG) {
@@ -361,6 +371,12 @@ export function Layout() {
       setAppState('panelBoxId', null);
     }
   }, [meta.value?.editor]);
+
+  useEffect(() => {
+    if (urlHash.value.editorId) {
+      handleOpenEditor(urlHash.value.editorId);
+    }
+  }, []);
 
   return (
     <>
