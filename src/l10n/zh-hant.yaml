@@ -1,6 +1,11 @@
 gui.name: BlockCode Playgrounds
 
 gui.alert.importing: 載入中…
+gui.alert.importError: 载入失败。
+gui.alert.exporting: 匯出中…
+gui.alert.exportCompleted: 匯出完成。
+gui.alert.exportAbortError: 取消匯出。
+gui.alert.exportError: 匯出失败。
 gui.alert.downloading: 正在下載…{progress}%
 gui.alert.downloadCompleted: 下載完成。
 gui.alert.downloadError: 下載失敗

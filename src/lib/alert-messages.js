@@ -14,6 +14,64 @@ addAlertConfig('importing', {
   ),
 });
 
+// 导出失败
+addAlertConfig('importError', {
+  icon: null,
+  mode: 'warn',
+  message: (
+    <Text
+      id="gui.alert.importError"
+      defaultMessage="Failed import."
+    />
+  ),
+});
+
+// 导出
+addAlertConfig('exporting', {
+  icon: <Spinner level="success" />,
+  message: (
+    <Text
+      id="gui.alert.exporting"
+      defaultMessage="Exporting..."
+    />
+  ),
+});
+
+// 导出完成
+addAlertConfig('exportCompleted', {
+  icon: null,
+  message: (
+    <Text
+      id="gui.alert.exportCompleted"
+      defaultMessage="Export completed."
+    />
+  ),
+});
+
+// 导出取消
+addAlertConfig('exportAbortError', {
+  icon: null,
+  mode: 'warn',
+  message: (
+    <Text
+      id="gui.alert.exportAbortError"
+      defaultMessage="Abort exporting."
+    />
+  ),
+});
+
+// 导出失败
+addAlertConfig('exportError', {
+  icon: null,
+  mode: 'warn',
+  message: (
+    <Text
+      id="gui.alert.exportError"
+      defaultMessage="Failed export."
+    />
+  ),
+});
+
 // 下载中
 addAlertConfig('downloading', {
   icon: <Spinner level="success" />,
@@ -39,7 +97,7 @@ addAlertConfig('downloadCompleted', {
 // 下载失败
 addAlertConfig('downloadError', {
   icon: null,
-  type: 'warn',
+  mode: 'warn',
   message: (
     <Text
       id="gui.alert.downloadError"

@@ -1,6 +1,11 @@
 gui.name: BlockCode Playgrounds
 
 gui.alert.importing: Importing...
+gui.alert.importError: Failed import.
+gui.alert.exporting: Exporting...
+gui.alert.exportCompleted: Export completed.
+gui.alert.exportAbortError: Abort exporting.
+gui.alert.exportError: Failed export.
 gui.alert.downloading: Downloading...{progress}%
 gui.alert.downloadCompleted: Download completed.
 gui.alert.downloadError: Download failed.
