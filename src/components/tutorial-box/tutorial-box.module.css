@@ -107,6 +107,7 @@
   border-radius: var(--space);
   overflow: hidden;
   margin: 0 var(--space) var(--space);
+  pointer-events: none;
 }
 
 .text {
@@ -144,6 +145,7 @@
   width: 200px;
   height: 100px;
   object-fit: cover;
+  pointer-events: none;
 }
 
 .more-item-name {

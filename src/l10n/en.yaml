@@ -1,29 +1,29 @@
 gui.name: BlockCode Playgrounds
 
-gui.alert.importing: Importing...
+gui.alert.importing: "Importing..."
 gui.alert.importError: Failed import.
-gui.alert.exporting: Exporting...
+gui.alert.exporting: "Exporting..."
 gui.alert.exportCompleted: Export completed.
 gui.alert.exportAbortError: Abort exporting.
 gui.alert.exportError: Failed export.
-gui.alert.downloading: Downloading...{progress}%
+gui.alert.downloading: "Downloading...{progress}%"
 gui.alert.downloadCompleted: Download completed.
 gui.alert.downloadError: Download failed.
-gui.alert.connecting: Connecting...
+gui.alert.connecting: "Connecting..."
 gui.alert.connected: Connected.
 gui.alert.connectionCancel: Connection cancel.
 gui.alert.connectionError: Connection error or connection was lost.
 gui.alert.connectionBusy: Device not respond.
-gui.alert.erasing: Erasing...
-gui.alert.restoring: Firmware restoring...{progress}%
-gui.alert.recovering: Recovering...
+gui.alert.erasing: "Erasing..."
+gui.alert.restoring: "Firmware restoring...{progress}%"
+gui.alert.recovering: "Recovering..."
 gui.alert.restoreCompleted: Firmware resotre completed! Now press RESET key
-gui.alert.reseting: Reseting...
-gui.alert.compiling: Compiling...
+gui.alert.reseting: "Reseting..."
+gui.alert.compiling: "Compiling..."
 gui.alert.compileCompleted: Compilation completed.
 gui.alert.compileError: Compilation failed.
 gui.alert.compileViewError: View Message.
-gui.alert.saving: Saving project...
+gui.alert.saving: "Saving project..."
 gui.alert.saved: Saved.
 gui.alert.savedComputer: Saved to your computer.
 gui.alert.saveAbortError: Abort saving.
@@ -35,9 +35,9 @@ gui.logs.changeDevice: Device changed to {device}
 gui.logs.connected: Device connected
 gui.logs.connectedType: Device connected with {type}
 gui.logs.disconnected: Device disconnected
-gui.logs.compiling: Compiling...
+gui.logs.compiling: "Compiling..."
 gui.logs.compiled: Compile completed
-gui.logs.downloading: Downloading...
+gui.logs.downloading: "Downloading..."
 gui.logs.downloaded: Download completed
 gui.logs.downloadError: Download failed
 
@@ -54,7 +54,7 @@ gui.home.slideshow.tankwar.button: Join us
 gui.home.slideshow.arcade.title: The next game, create your own!
 gui.home.slideshow.arcade.button: Create now
 
-gui.splash.loading: Loading project...
+gui.splash.loading: "Loading project..."
 gui.splash.errorTitle: Error occurred
 gui.splash.errorLabel: Please refresh the page and reopen it.
 
@@ -64,10 +64,10 @@ gui.menubar.titlePlaceholder: Project title here
 
 gui.menubar.file: File
 gui.menubar.file.newProject: New
-gui.menubar.file.openProject: Open...
+gui.menubar.file.openProject: "Open..."
 gui.menubar.file.saveProject: Save
-gui.menubar.file.uploadProject: Load from your computer...
-gui.menubar.file.downloadProject: save to your computer...
+gui.menubar.file.uploadProject: "Load from your computer..."
+gui.menubar.file.downloadProject: "Save to your computer..."
 
 gui.menubar.edit: Edit
 gui.menubar.edit.undo: Undo
@@ -91,13 +91,13 @@ gui.menubar.device: Device
 gui.menubar.device.sync: Sync program
 gui.menubar.device.download: Download program
 gui.menubar.device.reset: Reset device
-gui.menubar.device.connect: Connect device...
-gui.menubar.device.connectUsb: Connect device with USB...
-gui.menubar.device.connectBle: Connect device with Bluetooth (BLE)...
+gui.menubar.device.connect: "Connect device..."
+gui.menubar.device.connectUsb: "Connect device with USB..."
+gui.menubar.device.connectBle: "Connect device with Bluetooth (BLE)..."
 gui.menubar.device.disconnect: Disconnect device
-gui.menubar.device.firmware: Restore firmware...
-gui.menubar.device.firmwareVersion: Restore v{version} firmware...
-gui.menubar.device.caching: Caching latest firmware...
+gui.menubar.device.firmware: "Restore firmware..."
+gui.menubar.device.firmwareVersion: "Restore v{version} firmware..."
+gui.menubar.device.caching: "Caching latest firmware..."
 
 gui.panelBox.logs: Logs
 gui.panelBox.logsCopy: Copy
@@ -140,11 +140,11 @@ gui.prompt.reconnect: Reconnect
 
 gui.connection.device: Device Connection
 gui.connection.search: Start Searching
-gui.connection.searching: Searching...
+gui.connection.searching: "Searching..."
 gui.connection.connect: Start Connecting
 gui.connection.deviceName: Device name
 
-gui.about.title: About...
+gui.about.title: "About..."
 gui.about.main: Main program
 
 gui.terms.title: Terms of Use
