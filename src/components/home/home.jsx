@@ -8,6 +8,7 @@ import {
   renameProject,
   delProject,
   openProjectFromURL,
+  isElectron,
 } from '@blockcode/utils';
 import { maybeTranslate, setAlert, delAlert, openPromptModal, openUserStorage } from '@blockcode/core';
 import { version } from '../../../../../package.json';
@@ -209,10 +210,12 @@ export function Home({ onOpenEditor, onOpenProject }) {
 
   return (
     <div className={styles.homeWrapper}>
-      <Slideshow
-        className={styles.gettingStarted}
-        pages={getSlideshow(onOpenEditor, onOpenProject)}
-      />
+      {!isElectron && (
+        <Slideshow
+          className={styles.gettingStarted}
+          pages={getSlideshow(onOpenEditor, onOpenProject)}
+        />
+      )}
 
       {userProjects.value?.length > 0 && (
         <>
