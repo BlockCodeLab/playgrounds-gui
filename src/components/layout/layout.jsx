@@ -195,12 +195,17 @@ export function Layout() {
 
   const handleOpenTutorial = useCallback((id) => {
     const lesson = app.tutorials.value.lessons[id];
-    if (lesson.project) {
+    if (!lesson) return;
+
+    // 打开示例
+    const project = typeof lesson.project === 'function' ? lesson.project(meta.value) : lesson.project;
+    if (project) {
       const openExample = async () => {
         setAlert('importing', { id });
-        const example = await openProjectFromURL(lesson.project);
+        const example = await openProjectFromURL(project);
         delAlert(id);
         openProjectWithSplash(example);
+        // 打开教程
         batch(() => {
           tutorialId.value = id;
           tutorialLibraryVisible.value = false;
@@ -227,6 +232,12 @@ export function Layout() {
       } else {
         openExample();
       }
+    } else {
+      // 打开教程
+      batch(() => {
+        tutorialId.value = id;
+        tutorialLibraryVisible.value = false;
+      });
     }
   }, []);
 
