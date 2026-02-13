@@ -195,16 +195,39 @@ export function Layout() {
 
   const handleOpenTutorial = useCallback((id) => {
     const lesson = app.tutorials.value.lessons[id];
-    batch(async () => {
-      if (lesson.project) {
+    if (lesson.project) {
+      const openExample = async () => {
         setAlert('importing', { id });
         const example = await openProjectFromURL(lesson.project);
         delAlert(id);
         openProjectWithSplash(example);
+        batch(() => {
+          tutorialId.value = id;
+          tutorialLibraryVisible.value = false;
+        });
+      };
+
+      // 检查项目是否保存
+      if (modified.value) {
+        openPromptModal({
+          title: (
+            <Text
+              id="gui.library.projects.notSaved"
+              defaultMessage="Not saved"
+            />
+          ),
+          label: (
+            <Text
+              id="gui.library.projects.close"
+              defaultMessage="Close current project?"
+            />
+          ),
+          onSubmit: openExample,
+        });
+      } else {
+        openExample();
       }
-      tutorialId.value = id;
-      tutorialLibraryVisible.value = false;
-    });
+    }
   }, []);
 
   // 项目管理
@@ -217,6 +240,7 @@ export function Layout() {
 
   // 返回首页
   const handleBackHome = useCallback(() => {
+    tutorialId.value = null;
     // 检查项目是否保存
     if (modified.value) {
       openPromptModal({

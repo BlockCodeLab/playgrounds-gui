@@ -92,7 +92,7 @@
 }
 
 .title {
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin: 0.9rem;
   text-align: center;
   font-weight: bold;
@@ -103,7 +103,7 @@
   max-height: 200px;
   object-fit: contain;
   background: var(--ui-secondary);
-  /*border: 1px solid var(--ui-black-transparent);*/
+  border: 1px solid var(--ui-black-transparent);
   border-radius: var(--space);
   overflow: hidden;
   margin: 0 var(--space) var(--space);
@@ -111,7 +111,7 @@
 }
 
 .text {
-  font-size: 1rem;
+  font-size: 0.9rem;
   max-width: 450px;
   height: 200px;
   display: flex;
