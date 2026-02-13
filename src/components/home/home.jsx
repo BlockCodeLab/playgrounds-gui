@@ -11,6 +11,7 @@ import {
   isElectron,
 } from '@blockcode/utils';
 import { maybeTranslate, setAlert, delAlert, openPromptModal, openUserStorage } from '@blockcode/core';
+import { eegg } from './eegg';
 import { version } from '../../../../../package.json';
 
 import { Text, ContextMenu, LibraryItem } from '@blockcode/core';
@@ -207,6 +208,9 @@ export function Home({ onOpenEditor, onOpenProject }) {
 
     exampleHub.value = await getExamples(result);
   });
+
+  // 节日彩蛋
+  useEffect(eegg, []);
 
   return (
     <div className={styles.homeWrapper}>
