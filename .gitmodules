@@ -4,9 +4,6 @@
 [submodule "editors/esp32"]
 	path = editors/esp32
 	url = https://github.com/BlockCodeLab/gui-esp32.git
-[submodule "editors/microbit"]
-	path = editors/microbit
-	url = https://github.com/BlockCodeLab/gui-microbit.git
 [submodule "editors/matrix"]
 	path = editors/matrix
 	url = https://github.com/BlockCodeLab/gui-matrix.git
