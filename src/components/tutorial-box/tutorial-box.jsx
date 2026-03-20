@@ -33,7 +33,7 @@ export function TutorialBox({ tutorialId, onOpenTutorial, onBack, onClose }) {
 
   useEffect(() => {
     const lesson = tutorials.value.lessons[tutorialId];
-    if (!lesson) {
+    if (!lesson || !lesson.pages) {
       onClose();
       return;
     }
