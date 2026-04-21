@@ -172,11 +172,14 @@ export function Layout() {
   const openProjectWithSplash = useCallback((data) => {
     batch(() => {
       showSplash();
-      openProject(
-        Object.assign(JSON.parse(JSON.stringify(data)), {
-          fileId: data.fileId ?? data.files?.[0]?.id,
-        }),
-      );
+      const newProject = Object.assign(JSON.parse(JSON.stringify(data)), {
+        fileId: data.fileId ?? data.files?.[0]?.id,
+      });
+      // 没有设置编辑器的，使用当前编辑器（危险，仅供调试和内部使用）
+      if (!newProject.meta.editor) {
+        newProject.meta.editor = meta.value.editor;
+      }
+      openProject(newProject);
       openTab(0);
     });
   }, []);
