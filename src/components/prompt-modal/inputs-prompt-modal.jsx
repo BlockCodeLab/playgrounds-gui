@@ -5,7 +5,7 @@ import { maybeTranslate, Text, BufferedInput, Button, Modal } from '@blockcode/c
 import styles from './prompt-modal.module.css';
 
 export function InputsPromptModal({ title, inputItems, content, onClose, onSubmit }) {
-  const data = useSignal(Object.fromEntries(inputItems.map(({ name, defaultValue }) => [name, defaultValue])));
+  const data = useSignal(Object.fromEntries(inputItems.map(({ key, defaultValue }) => [key, defaultValue])));
 
   const handleKeyDown = useCallback(
     (e) => {
@@ -44,7 +44,7 @@ export function InputsPromptModal({ title, inputItems, content, onClose, onSubmi
       onClose={onClose}
     >
       <div className={styles.promptContent}>
-        {inputItems.map(({ name, label, placeholder, defaultValue }, index) => (
+        {inputItems.map(({ key, label, placeholder, defaultValue }, index) => (
           <>
             {label && <div className={classNames(styles.label, styles.inputLabel)}>{label}</div>}
             <BufferedInput
@@ -53,7 +53,7 @@ export function InputsPromptModal({ title, inputItems, content, onClose, onSubmi
               className={styles.textInput}
               placeholder={maybeTranslate(placeholder)}
               defaultValue={defaultValue}
-              onSubmit={wrapInputSubmit(name)}
+              onSubmit={wrapInputSubmit(key)}
             />
           </>
         ))}
