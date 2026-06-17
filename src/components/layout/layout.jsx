@@ -20,6 +20,7 @@ import {
   delAlert,
   setAppState,
 } from '@blockcode/core';
+import { PanelBoxes } from '@blockcode/code';
 import { mergeMenus } from '../menu-bar/merge-menus';
 
 import { Text } from '@blockcode/core';
@@ -35,7 +36,6 @@ import { Tabs, TabLabel, TabPanel } from '../tabs/tabs';
 import { TutorialBox } from '../tutorial-box/tutorial-box';
 import { TutorialLibrary } from '../tutorial-library/tutorial-library';
 import { UserStorage } from '../user-storage/user-storage';
-import { PanelBox } from '../panel-box/panel-box';
 import styles from './layout.module.css';
 
 import getEditors from '../../lib/get-editors';
@@ -403,7 +403,7 @@ export function Layout() {
     if (meta.value?.editor) {
       const autoDisplay = getAutoDisplayPanel(meta.value.editor);
       if (autoDisplay) {
-        setAppState('panelBoxId', 'Logs');
+        setAppState('panelBoxId', PanelBoxes.Logs);
       }
     } else {
       setAppState('panelBoxId', null);
@@ -485,14 +485,6 @@ export function Layout() {
           )}
         </div>
       </div>
-
-      {app.appState.value?.panelBoxId && (
-        <PanelBox
-          panelId={app.appState.value.panelBoxId}
-          onPanelChange={useCallback((id) => setAppState('panelBoxId', id), [])}
-          onClose={useCallback(() => setAppState('panelBoxId', null), [])}
-        />
-      )}
 
       {foundDevices.value && (
         <ConnectionModal

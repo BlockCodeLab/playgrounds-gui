@@ -1,8 +1,8 @@
-import { useEffect, useCallback } from 'preact/hooks';
+import { useCallback } from 'preact/hooks';
 import { useComputed, useSignal } from '@preact/signals';
 import { classNames, getAutoDisplayPanel, setAutoDisplayPanel } from '@blockcode/utils';
 import { useAppContext, useProjectContext, setAppState, Keys, Text, MenuSection, MenuItem } from '@blockcode/core';
-import { PanelBoxes } from '../panel-box/panel-box';
+import { PanelBoxes } from '@blockcode/code';
 
 import styles from './menu-bar.module.css';
 import checkIcon from './icons/icon-check.svg';

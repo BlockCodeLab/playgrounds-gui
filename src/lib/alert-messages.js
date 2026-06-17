@@ -207,6 +207,15 @@ addAlertConfig('restoreCompleted', {
     />
   ),
 });
+addAlertConfig('restoreCompletedNotReset', {
+  icon: null,
+  message: (
+    <Text
+      id="gui.alert.restoreCompletedNotReset"
+      defaultMessage="Firmware resotre completed!"
+    />
+  ),
+});
 
 // 编译
 addAlertConfig('compiling', {
