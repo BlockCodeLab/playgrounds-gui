@@ -29,8 +29,6 @@ gui.alert.saved: Saved.
 gui.alert.savedComputer: Saved to your computer.
 gui.alert.saveAbortError: Abort saving.
 gui.alert.saveError: Failed save.
-gui.alert.logsCopied: Logs copied to clipboard.
-gui.alert.logsCopyFailed: Failed to copy logs to clipboard.
 
 gui.logs.changeDevice: Device changed to {device}
 gui.logs.connected: Device connected

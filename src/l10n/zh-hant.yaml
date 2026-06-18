@@ -29,8 +29,6 @@ gui.alert.saved: 已保存。
 gui.alert.savedComputer: 已保存到電腦。
 gui.alert.saveAbortError: 取消保存。
 gui.alert.saveError: 保存專案失敗。
-gui.alert.logsCopied: 日誌已複製。
-gui.alert.logsCopyFailed: 日誌複製失敗。
 
 gui.logs.changeDevice: 設備已更改為 {device}
 gui.logs.connected: 設備已連接
