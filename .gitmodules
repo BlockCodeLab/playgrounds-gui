@@ -1,9 +1,6 @@
 [submodule "editors/esp32"]
 	path = editors/esp32
 	url = https://github.com/BlockCodeLab/gui-esp32.git
-[submodule "editors/writer"]
-	path = editors/writer
-	url = https://github.com/BlockCodeLab/gui-writer.git
 [submodule "editors/iotbit"]
 	path = editors/iotbit
 	url = https://github.com/BlockCodeLab/gui-iotbit.git
