@@ -1,26 +1,26 @@
 gui.name: BlockCode Playgrounds
 
-gui.alert.importing: Importing...
+gui.alert.importing: 'Importing...'
 gui.alert.importError: Failed import.
-gui.alert.exporting: Exporting...
+gui.alert.exporting: 'Exporting...'
 gui.alert.exportCompleted: Export completed.
 gui.alert.exportAbortError: Abort exporting.
 gui.alert.exportError: Failed export.
-gui.alert.downloading: Downloading...{progress}%
+gui.alert.downloading: 'Downloading...{progress}%'
 gui.alert.downloadCompleted: Download completed.
 gui.alert.downloadError: Download failed.
-gui.alert.connecting: Connecting...
+gui.alert.connecting: 'Connecting...'
 gui.alert.connected: Connected.
 gui.alert.connectionCancel: Connection cancel.
 gui.alert.connectionError: Connection error or connection was lost.
 gui.alert.connectionBusy: Device not respond.
-gui.alert.erasing: Erasing...
-gui.alert.restoring: Firmware restoring...{progress}%
-gui.alert.recovering: Recovering...
+gui.alert.erasing: 'Erasing...'
+gui.alert.restoring: 'Firmware restoring...{progress}%'
+gui.alert.recovering: 'Recovering...'
 gui.alert.restoreCompleted: Firmware resotre completed! Now press RESET key
-gui.alert.restoreCompletedNotReset: Firmware resotre completed!
-gui.alert.reseting: Reseting...
-gui.alert.compiling: Compiling...
+gui.alert.restoreCompletedNotReset: 'Firmware resotre completed!'
+gui.alert.reseting: 'Reseting...'
+gui.alert.compiling: 'Compiling...'
 gui.alert.compileCompleted: Compilation completed.
 gui.alert.compileError: Compilation failed.
 gui.alert.compileViewError: View Message.
