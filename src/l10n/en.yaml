@@ -146,3 +146,5 @@ gui.terms.content: >
 gui.privacy.title: Privacy
 gui.privacy.content: >
   <b>Privacy</b>
+
+gui.qrcode.title: (Join the author's WeChat group)

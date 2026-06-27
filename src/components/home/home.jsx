@@ -22,6 +22,8 @@ import getSlideshow from '../../lib/get-slideshow';
 import getExamples from '../../lib/get-examples';
 import getEditors from '../../lib/get-editors';
 
+import qrcodeImage from './qrcode.jpg';
+
 export function Home({ onOpenEditor, onOpenProject }) {
   // 项目限制数量限制，依据页面宽度调整
   const DISPLAY_PROJECTS_COUNTS = Math.floor((document.body.clientWidth - 20) / (160 + 16));
@@ -210,7 +212,7 @@ export function Home({ onOpenEditor, onOpenProject }) {
   });
 
   // 节日彩蛋
-  useEffect(eegg, []);
+  // useEffect(eegg, []);
 
   return (
     <div className={styles.homeWrapper}>
@@ -326,13 +328,14 @@ export function Home({ onOpenEditor, onOpenProject }) {
       )}
 
       <div className={styles.footer}>
-        <span
-          className={classNames(styles.footerItem, styles.link)}
-          onClick={() => window.open('https://lab.blockcode.fun/', '_blank')}
-        >
-          BlockCode Lab
-        </span>
-        {/* <span
+        <div>
+          <span
+            className={classNames(styles.footerItem, styles.link)}
+            onClick={() => window.open('https://lab.blockcode.fun/', '_blank')}
+          >
+            BlockCode Lab
+          </span>
+          {/* <span
           className={classNames(styles.footerItem, styles.link)}
           onClick={() => {
             openPromptModal({
@@ -380,53 +383,65 @@ export function Home({ onOpenEditor, onOpenProject }) {
             defaultMessage="Privacy"
           />
         </span>*/}
-        <span
-          className={classNames(styles.footerItem, styles.link)}
-          onClick={() => window.open('https://github.com/BlockCodeLab/playgrounds-app', '_blank')}
-        >
-          GitHub
-        </span>
-        <span
-          className={classNames(styles.footerItem, styles.link)}
-          onClick={() => {
-            openPromptModal({
-              title: (
-                <Text
-                  id="gui.about.title"
-                  defaultMessage="About..."
-                />
-              ),
-              body: (
-                <div className={styles.aboutVersionContent}>
-                  <div className={styles.aboutVersionRow}>
-                    <div>
-                      <b>
-                        <Text
-                          id="gui.about.main"
-                          defaultMessage="Main program"
-                        />
-                      </b>
-                    </div>
-                    <div>v{version}</div>
-                  </div>
-                  <div className={styles.aboutVersionRow}></div>
-                  {editors.value
-                    .filter((item) => !item.disabled)
-                    .map((item) => (
-                      <div className={styles.aboutVersionRow}>
-                        <div>
-                          <b>{item.name}</b>
-                        </div>
-                        <div>v{item.version}</div>
+          <span
+            className={classNames(styles.footerItem, styles.link)}
+            onClick={() => window.open('https://github.com/BlockCodeLab/playgrounds-app', '_blank')}
+          >
+            GitHub
+          </span>
+          <span
+            className={classNames(styles.footerItem, styles.link)}
+            onClick={() => {
+              openPromptModal({
+                title: (
+                  <Text
+                    id="gui.about.title"
+                    defaultMessage="About..."
+                  />
+                ),
+                body: (
+                  <div className={styles.aboutVersionContent}>
+                    <div className={styles.aboutVersionRow}>
+                      <div>
+                        <b>
+                          <Text
+                            id="gui.about.main"
+                            defaultMessage="Main program"
+                          />
+                        </b>
                       </div>
-                    ))}
-                </div>
-              ),
-            });
-          }}
-        >
-          v{version}
-        </span>
+                      <div>v{version}</div>
+                    </div>
+                    <div className={styles.aboutVersionRow}></div>
+                    {editors.value
+                      .filter((item) => !item.disabled)
+                      .map((item) => (
+                        <div className={styles.aboutVersionRow}>
+                          <div>
+                            <b>{item.name}</b>
+                          </div>
+                          <div>v{item.version}</div>
+                        </div>
+                      ))}
+                  </div>
+                ),
+              });
+            }}
+          >
+            v{version}
+          </span>
+        </div>
+
+        <div className={styles.qrcode}>
+          <Text
+            id="gui.qrcode.title"
+            defaultMessage="(Join the author's WeChat group)"
+          />
+          <img
+            src={qrcodeImage}
+            alt="QR Code"
+          />
+        </div>
       </div>
     </div>
   );

@@ -32,9 +32,17 @@
 
 .footer {
   color: var(--text-primary);
-  font-size: var(--small-font-size);
-  padding: 3.5rem 0 var(--space);
-  text-align: center;
+  font-size: var(--standard-font-size);
+  padding: 2.5rem var(--space) var(--space);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.qrcode img {
+  width: 130px;
+  vertical-align: bottom;
+  margin-left: var(--space);
 }
 
 .footer-item {

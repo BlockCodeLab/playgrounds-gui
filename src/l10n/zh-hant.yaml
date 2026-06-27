@@ -146,3 +146,5 @@ gui.terms.content: >
 gui.privacy.title: 隱私
 gui.privacy.content: >
   <b>隱私</b>
+
+gui.qrcode.title: （掃碼加作者進群交流）
