@@ -111,7 +111,11 @@ export function MenuBar({ className, showHomeButton, onRequestHome, onOpenTutori
                 content={item.tooltip}
               >
                 {Label ? (
-                  <Label className={classNames(styles.menuBarItem, styles.menuLabel, styles.hoverable)} />
+                  <Label
+                    className={classNames(styles.menuBarItem, styles.menuLabel, styles.hoverable)}
+                    menuClassName={styles.menu}
+                    itemClassName={styles.menuItem}
+                  />
                 ) : (
                   <label className={classNames(styles.menuBarItem, styles.menuLabel, styles.hoverable)}>
                     {item.label}
@@ -119,7 +123,11 @@ export function MenuBar({ className, showHomeButton, onRequestHome, onOpenTutori
                 )}
               </Tooltip>
             ) : Label ? (
-              <Label className={classNames(styles.menuBarItem, styles.menuLabel, styles.hoverable)} />
+              <Label
+                className={classNames(styles.menuBarItem, styles.menuLabel, styles.hoverable)}
+                menuClassName={styles.menu}
+                itemClassName={styles.menuItem}
+              />
             ) : (
               <label
                 className={classNames(styles.menuBarItem, styles.menuLabel, styles.hoverable)}
