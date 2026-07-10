@@ -15,10 +15,10 @@ gui.alert.connectionCancel: Connection cancel.
 gui.alert.connectionError: Connection error or connection was lost.
 gui.alert.connectionBusy: Device not respond.
 gui.alert.erasing: 'Erasing...'
-gui.alert.restoring: 'Firmware restoring...{progress}%'
+gui.alert.restoring: 'Firmware flashing...{progress}%'
 gui.alert.recovering: 'Recovering...'
-gui.alert.restoreCompleted: Firmware resotre completed! Now press RESET key
-gui.alert.restoreCompletedNotReset: 'Firmware resotre completed!'
+gui.alert.restoreCompleted: Firmware completed! Now press RESET key
+gui.alert.restoreCompletedNotReset: 'Firmware completed!'
 gui.alert.reseting: 'Reseting...'
 gui.alert.compiling: 'Compiling...'
 gui.alert.compileCompleted: Compilation completed.

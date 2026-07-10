@@ -15,10 +15,10 @@ gui.alert.connectionCancel: 连接取消。
 gui.alert.connectionError: 连接发生错误，或已断开。
 gui.alert.connectionBusy: 设备未响应。
 gui.alert.erasing: 正在清除…
-gui.alert.restoring: 正在恢复固件…{progress}%
+gui.alert.restoring: 正在烧录固件…{progress}%
 gui.alert.recovering: 恢复设备…
-gui.alert.restoreCompleted: 恢复固件完成，请按下 RESET 键。
-gui.alert.restoreCompletedNotReset: 恢复固件完成。
+gui.alert.restoreCompleted: 烧录固件完成，请按下 RESET 键。
+gui.alert.restoreCompletedNotReset: 烧录固件完成。
 gui.alert.reseting: 正在复位…
 gui.alert.compiling: 正在编译…
 gui.alert.compileCompleted: 编译完成。

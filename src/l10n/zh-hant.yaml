@@ -15,10 +15,10 @@ gui.alert.connectionCancel: 連接取消。
 gui.alert.connectionError: 連接發生錯誤，或已斷開。
 gui.alert.connectionBusy: 設備未響應。
 gui.alert.erasing: 正在清除…
-gui.alert.restoring: 正在還原固件…{progress}%
+gui.alert.restoring: 正在燒錄固件…{progress}%
 gui.alert.recovering: 恢復設備…
-gui.alert.restoreCompleted: 還原固件完成，請按下 RESET 鍵。
-gui.alert.restoreCompletedNotReset: 還原固件完成。
+gui.alert.restoreCompleted: 燒錄固件完成，請按下 RESET 鍵。
+gui.alert.restoreCompletedNotReset: 燒錄固件完成。
 gui.alert.reseting: 正在重置…
 gui.alert.compiling: 正在編譯…
 gui.alert.compileCompleted: 編譯完成。
