@@ -1,4 +1,4 @@
-import { resolve, dirname } from 'node:path';
+import { pathResolve } from '@blockcode/utils';
 import { readEditors } from './read-editors' with { type: 'macro' };
 
 const editors = readEditors();
@@ -10,9 +10,11 @@ export default function () {
     [].concat(
       Object.values(locals).map(async (editor) => {
         const { default: info } = await import(editor.info);
-        info.id = editor.id;
-        info.image = resolve(dirname(editor.info), info.image);
-        return info;
+        return {
+          ...info,
+          id: editor.id,
+          image: pathResolve(editor.basepath, info.image),
+        };
       }),
       editors.map(async (id) => {
         const { default: info } = await import(`${id}/info`);
