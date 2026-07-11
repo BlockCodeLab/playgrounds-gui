@@ -94,7 +94,7 @@ export function MenuBar({ className, showHomeButton, onRequestHome, onOpenTutori
             ))}
         </MainMenu>
 
-        {tutorials.value && <TutorialsButton onClick={onOpenTutorialLibrary} />}
+        {Object.keys(tutorials.value?.lessons ?? {}).length > 0 && <TutorialsButton onClick={onOpenTutorialLibrary} />}
 
         {showHomeButton && (
           <ProjectTitleInput
